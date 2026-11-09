@@ -1,0 +1,4 @@
+- Proyecto: Operadora de activos inmobiliarios en Venezuela (Caracas), convertir inmuebles vacíos/infrautilizados en productivos. Archivo base: proyecto_operadora_activos_venezuela.docx (v. 29 oct 2026). [2026-10-29]
+- Hipótesis principal: propietarios (esp. diaspora) pagan por gestión integral local transparente.
+- Beachhead recomendado: apartamentos residenciales mid/high en zonas específicas Caracas para owners abroad.
+- Nueva ley de arrendamiento vivienda (GO 7.065, 7 ago 2026) da más libertad contractual a contratos nuevos. [2026-10-29]

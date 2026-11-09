@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Venezuela Activa",
+      "hasCanvas": false,
+      "bodyTextLen": 1618,
+      "bodyTextHash": "e440bce91e701c2550b6d18ea8536af732ab45b3805f21601141993bb5ecfcad",
+      "bodyTextPrefix": "Venezuela Activa Pide tu diagnóstico Tu inmueble en Venezuela ge",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Venezuela Activa",
+      "hasCanvas": false,
+      "bodyTextLen": 1618,
+      "bodyTextHash": "e440bce91e701c2550b6d18ea8536af732ab45b3805f21601141993bb5ecfcad",
+      "bodyTextPrefix": "Venezuela Activa Pide tu diagnóstico Tu inmueble en Venezuela ge",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}

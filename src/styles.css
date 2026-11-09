@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #1a1714;
+  --color-paper: #f6f3ee;
+  --color-cream: #fffdf9;
+  --color-muted: #6d665e;
+  --color-line: #e4ddd2;
+  --color-brick: #8c3a2f;
+  --color-flag-y: #f5c518;
+  --color-flag-b: #2457c5;
+  --color-flag-r: #c81e1e;
+  --color-income: #6ee7a8;
+  --color-income-ink: #1b7a45;
+  --font-sans: "Source Sans 3", system-ui, sans-serif;
+  --font-sub: "Source Serif 4", Georgia, serif;
+  --font-display: "Newsreader", Georgia, serif;
+  --radius-card: 1.25rem;
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+
+  .flag-edge {
+    -webkit-text-stroke: 0.75px rgba(0, 0, 0, 0.88);
+    paint-order: stroke fill;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+  }
+
+  .pulse-heart {
+    display: inline-block;
+    transform-origin: center;
+    animation: heartbeat 1.45s ease-in-out infinite;
+  }
+
+  @keyframes heartbeat {
+    0%, 68%, 100% { transform: scale(1); }
+    14% { transform: scale(1.07); }
+    28% { transform: scale(1); }
+    40% { transform: scale(1.04); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pulse-heart { animation: none; }
+  }
+}
