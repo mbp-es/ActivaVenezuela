@@ -63,6 +63,13 @@ function Home() {
     const prev = JSON.parse(localStorage.getItem("va-diagnosticos") || "[]") as FormState[];
     localStorage.setItem("va-diagnosticos", JSON.stringify([{ ...form, at: new Date().toISOString() }, ...prev].slice(0, 20)));
     setError("");
+      try {
+      const w = window as unknown as { fbq?: (...args: unknown[]) => void; dataLayer?: unknown[] };
+      w.fbq?.("track", "Lead");
+      w.dataLayer?.push({ event: "diagnostico_enviado" });
+    } catch {
+      // el tracking nunca debe romper el envío del formulario
+    } 
     setSent(true);
   }
 
