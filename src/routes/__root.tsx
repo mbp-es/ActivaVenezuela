@@ -6,6 +6,32 @@ import { PreviewHostBridge } from "@/components/preview-host-bridge";
 import appCss from "../styles.css?url";
 
 const APP_NAME = "Venezuela Activa";
+const META_PIXEL_ID = "1850590076289566";
+
+const META_PIXEL_SCRIPT = `
+  !function(f,b,e,v,n,t,s) {
+    if (f.fbq) return;
+    n = f.fbq = function() { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+    if (!f._fbq) f._fbq = n;
+    n.push = n;
+    n.loaded = true;
+    n.version = '2.0';
+    n.queue = [];
+    t = b.createElement(e);
+    t.async = true;
+    t.src = v;
+    s = b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t, s);
+  }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '${META_PIXEL_ID}');
+  fbq('track', 'PageView');
+`;
+
+const GTAG_BOOTSTRAP_SCRIPT = `
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+`;
 
 export const Route = createRootRoute({
   head: () => ({
@@ -37,6 +63,8 @@ export const Route = createRootRoute({
     <html lang="es" suppressHydrationWarning>
       <head>
         <HeadContent />
+        <script dangerouslySetInnerHTML={{ __html: META_PIXEL_SCRIPT }} />
+        <script dangerouslySetInnerHTML={{ __html: GTAG_BOOTSTRAP_SCRIPT }} />
       </head>
       <body>
         <PreviewHostBridge />
