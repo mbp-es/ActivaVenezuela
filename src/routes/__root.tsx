@@ -65,6 +65,7 @@ export const Route = createRootRoute({
         <HeadContent />
         <script dangerouslySetInnerHTML={{ __html: META_PIXEL_SCRIPT }} />
         <script dangerouslySetInnerHTML={{ __html: GTAG_BOOTSTRAP_SCRIPT }} />
+        <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-KBLKF28Z" />
       </head>
       <body>
         <PreviewHostBridge />
