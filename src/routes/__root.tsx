@@ -27,10 +27,19 @@ const META_PIXEL_SCRIPT = `
   fbq('track', 'PageView');
 `;
 
-const GTAG_BOOTSTRAP_SCRIPT = `
+const GTM_ID = "GTM-KBLKF28Z";
+
+const GOOGLE_TAG_MANAGER_SCRIPT = `
   window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
-  gtag('js', new Date());
+  window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+  (function(w, d, s, l, i) {
+    var firstScript = d.getElementsByTagName(s)[0];
+    var script = d.createElement(s);
+    var layerQuery = l !== 'dataLayer' ? '&l=' + l : '';
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + layerQuery;
+    firstScript.parentNode.insertBefore(script, firstScript);
+  })(window, document, 'script', 'dataLayer', '${GTM_ID}');
 `;
 
 export const Route = createRootRoute({
@@ -64,10 +73,29 @@ export const Route = createRootRoute({
       <head>
         <HeadContent />
         <script dangerouslySetInnerHTML={{ __html: META_PIXEL_SCRIPT }} />
-        <script dangerouslySetInnerHTML={{ __html: GTAG_BOOTSTRAP_SCRIPT }} />
-        <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-KBLKF28Z" />
+        <script dangerouslySetInnerHTML={{ __html: GOOGLE_TAG_MANAGER_SCRIPT }} />
       </head>
       <body>
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            alt=""
+            src="https://www.facebook.com/tr?id=1850590076289566&ev=PageView&noscript=1"
+          />
+        </noscript>
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-KBLKF28Z"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+            title="Google Tag Manager"
+            aria-hidden="true"
+            tabIndex={-1}
+          />
+        </noscript>
         <PreviewHostBridge />
         <AuthProvider>
           <Outlet />
