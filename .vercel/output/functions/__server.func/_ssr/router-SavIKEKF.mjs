@@ -1,8 +1,10 @@
 import { i as __toESM } from "../_runtime.mjs";
 import { K as require_react, _ as createFileRoute, b as require_jsx_runtime, d as Scripts, f as HeadContent, g as lazyRouteComponent, h as Outlet, m as createRouter, v as createRootRoute, y as useRouter } from "../_libs/@tanstack/react-router+[...].mjs";
 import { t as TriangleAlert } from "../_libs/lucide-react.mjs";
+import { t as Analytics } from "../_libs/vercel__analytics.mjs";
+import { t as SpeedInsights } from "../_libs/vercel__speed-insights.mjs";
 import { a as union, i as string, n as number, r as object, t as literal } from "../_libs/zod.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-CpU80gfy.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router-SavIKEKF.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var FALLBACK_MESSAGE = "An unexpected error occurred. Try reloading the page.";
@@ -330,8 +332,38 @@ function PreviewHostBridge() {
 	}, [router]);
 	return null;
 }
-var styles_default = "/assets/styles-0ZPN9qpQ.css";
-var APP_NAME = "Venezuela Activa";
+var styles_default = "/assets/styles-h3pL5Y0m.css";
+var APP_NAME = "Activa Venezuela";
+var META_PIXEL_SCRIPT = `
+  !function(f,b,e,v,n,t,s) {
+    if (f.fbq) return;
+    n = f.fbq = function() { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+    if (!f._fbq) f._fbq = n;
+    n.push = n;
+    n.loaded = true;
+    n.version = '2.0';
+    n.queue = [];
+    t = b.createElement(e);
+    t.async = true;
+    t.src = v;
+    s = b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t, s);
+  }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1850590076289566');
+  fbq('track', 'PageView');
+`;
+var GOOGLE_TAG_MANAGER_SCRIPT = `
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+  (function(w, d, s, l, i) {
+    var firstScript = d.getElementsByTagName(s)[0];
+    var script = d.createElement(s);
+    var layerQuery = l !== 'dataLayer' ? '&l=' + l : '';
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + layerQuery;
+    firstScript.parentNode.insertBefore(script, firstScript);
+  })(window, document, 'script', 'dataLayer', 'GTM-KBLKF28Z');
+`;
 var Route$1 = createRootRoute({
 	head: () => ({
 		meta: [
@@ -386,14 +418,39 @@ var Route$1 = createRootRoute({
 	component: () => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("html", {
 		lang: "es",
 		suppressHydrationWarning: true,
-		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("head", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(HeadContent, {}) }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("body", { children: [
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("head", { children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(HeadContent, {}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("script", { dangerouslySetInnerHTML: { __html: META_PIXEL_SCRIPT } }),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("script", { dangerouslySetInnerHTML: { __html: GOOGLE_TAG_MANAGER_SCRIPT } })
+		] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("body", { children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("noscript", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+				height: "1",
+				width: "1",
+				style: { display: "none" },
+				alt: "",
+				src: "https://www.facebook.com/tr?id=1850590076289566&ev=PageView&noscript=1"
+			}) }),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("noscript", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("iframe", {
+				src: "https://www.googletagmanager.com/ns.html?id=GTM-KBLKF28Z",
+				height: "0",
+				width: "0",
+				style: {
+					display: "none",
+					visibility: "hidden"
+				},
+				title: "Google Tag Manager",
+				"aria-hidden": "true",
+				tabIndex: -1
+			}) }),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PreviewHostBridge, {}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(AuthProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Outlet, {}) }),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Analytics, {}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SpeedInsights, {}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Scripts, {})
 		] })]
 	})
 });
-var $$splitComponentImporter = () => import("./routes-D_cAwfD_.mjs");
+var $$splitComponentImporter = () => import("./routes-Bl7vJZeE.mjs");
 var rootRouteChildren = { IndexRoute: createFileRoute("/")({ component: lazyRouteComponent($$splitComponentImporter, "component") }).update({
 	id: "/",
 	path: "/",
