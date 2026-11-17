@@ -5,7 +5,7 @@ import { AuthProvider } from "@/lib/auth/provider";
 import { PreviewHostBridge } from "@/components/preview-host-bridge";
 import appCss from "../styles.css?url";
 
-const APP_NAME = "Venezuela Activa";
+const APP_NAME = "Activa Venezuela";
 const META_PIXEL_ID = "1850590076289566";
 
 const META_PIXEL_SCRIPT = `

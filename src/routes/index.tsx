@@ -8,15 +8,9 @@ type FormState = {
   correo: string;
   whatsapp: string;
   objetivo: string;
+  entidad: string;
   direccion: string;
   metros: string;
-  anos: string;
-  habs: string;
-  banos: string;
-  presupuesto: string;
-  estado: string;
-  documentos: string;
-  comentarios: string;
 };
 
 const EMPTY: FormState = {
@@ -24,15 +18,9 @@ const EMPTY: FormState = {
   correo: "",
   whatsapp: "",
   objetivo: "",
+  entidad: "",
   direccion: "",
   metros: "",
-  anos: "",
-  habs: "",
-  banos: "",
-  presupuesto: "",
-  estado: "",
-  documentos: "",
-  comentarios: "",
 };
 
 function Home() {
@@ -52,14 +40,18 @@ function Home() {
 
   function submit(event: FormEvent) {
     event.preventDefault();
-    if (!form.nombre.trim() || !form.correo.trim() || !form.whatsapp.trim() || !form.objetivo || !form.direccion.trim()) {
-      setError("Completa nombre, correo, WhatsApp, qué quieres hacer y la dirección.");
+    if (!form.nombre.trim() || !form.correo.trim() || !form.whatsapp.trim() || !form.objetivo || !form.entidad || !form.direccion.trim()) {
+      setError("Completa nombre, correo, WhatsApp, qué quieres hacer, estado y dirección.");
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.correo.trim())) {
       setError("El correo no se ve válido.");
       return;
     }
+    const w = window as Window & { dataLayer?: Record<string, unknown>[]; fbq?: (...args: unknown[]) => void };
+    w.dataLayer = w.dataLayer || [];
+    w.dataLayer.push({ event: "generar_lead", objetivo: form.objetivo, entidad: form.entidad });
+    w.fbq?.("track", "Lead");
     const prev = JSON.parse(localStorage.getItem("va-diagnosticos") || "[]") as FormState[];
     localStorage.setItem("va-diagnosticos", JSON.stringify([{ ...form, at: new Date().toISOString() }, ...prev].slice(0, 20)));
     setError("");
@@ -71,7 +63,7 @@ function Home() {
       <header className="sticky top-0 z-30 border-b border-line bg-cream/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5">
           <p className="font-display text-2xl tracking-tight">
-            Venezuela <span className="text-brick">Activa</span>
+            Activa <span className="text-brick">Venezuela</span>
           </p>
           <button
             type="button"
@@ -114,7 +106,8 @@ function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-5 py-20">
+      <section className="bg-cream py-20">
+        <div className="mx-auto max-w-5xl px-5">
         <h2 className="mx-auto max-w-3xl text-center font-display text-4xl leading-tight tracking-tight sm:text-5xl">
           Si tu inmueble está parado y <span className="text-flag-r">sangrando efectivo</span>, esto te interesa.
         </h2>
@@ -127,60 +120,161 @@ function Home() {
         </div>
 
         <div className="mt-10 grid gap-4 md:grid-cols-3">
-          <article className="rounded-card border border-line bg-cream p-7">
+          <article className="rounded-card border border-line bg-paper p-7">
             <p className="font-display text-2xl leading-snug">
               Cada mes pagas mantenimiento, condominio, luz, agua y otros gastos de tu propiedad que no produce nada.
             </p>
           </article>
-          <article className="rounded-card border border-line bg-cream p-7">
+          <article className="rounded-card border border-line bg-paper p-7">
             <p className="font-display text-2xl leading-snug">
-              ¿Qué tal te vendría rentabilizar algo que ya es de tu propiedad?
+              ¿Cuánto dinero has dejado de percibir durante todos estos años?
             </p>
           </article>
-          <article className="rounded-card border border-line bg-cream p-7">
+          <article className="rounded-card border border-line bg-paper p-7">
             <p className="font-display text-2xl leading-snug">
-              La verdadera forma de generar ingresos de forma pasiva.
+              Deja de cubrir gastos, y empieza a descubrir ingresos.
             </p>
           </article>
         </div>
+        </div>
       </section>
 
-      <section className="bg-cream py-20">
+      <section className="bg-paper py-20">
         <div className="mx-auto max-w-6xl px-5">
-          <h2 className="text-center font-display text-4xl tracking-tight sm:text-5xl">Qué hacemos por ti</h2>
-          <p className="mx-auto mt-3 max-w-2xl text-center font-sub text-lg text-muted">
-            Del diagnóstico al pago, pasando por las obras y mantenimientos.
+        <h2 className="mx-auto max-w-3xl text-center font-display text-4xl leading-tight tracking-tight sm:text-5xl">
+          De gasto a <span className="text-income-ink">ingreso</span>.<br />Todo empieza por el diagnóstico.
+        </h2>
+        <div className="mt-12 grid gap-5 md:grid-cols-3">
+          <article className="rounded-card border border-line bg-cream p-7">
+            <p className="font-display text-3xl text-brick">1</p>
+            <h3 className="mt-3 font-display text-2xl">Diagnóstico</h3>
+            <p className="mt-3 font-sub text-muted">
+              Visita presencial. Informe de estructura, estado y qué hacer según tu estrategia, con presupuesto.
+            </p>
+          </article>
+          <article className="rounded-card border border-line bg-cream p-7">
+            <p className="font-display text-3xl text-brick">2</p>
+            <h3 className="mt-3 font-display text-2xl">Activación</h3>
+            <p className="mt-3 font-sub text-muted">
+              Las obras que necesitas. A medida.
+            </p>
+          </article>
+          <article className="rounded-card border border-line bg-cream p-7">
+            <p className="font-display text-3xl text-brick">3</p>
+            <h3 className="mt-3 font-display text-2xl">Gestión</h3>
+            <p className="mt-3 font-sub text-muted">
+              Inquilino o comprador, contrato y cobro en tu divisa. Incidencias, condominio y reportes.
+            </p>
+          </article>
+        </div>
+        </div>
+      </section>
+
+      <section className="bg-cream py-24">
+        <div className="mx-auto max-w-6xl px-5">
+          <p className="text-center text-sm font-semibold tracking-[0.18em] text-brick uppercase">1 · Diagnóstico</p>
+          <h2 className="mt-3 text-center font-display text-4xl tracking-tight sm:text-5xl">Tres formas de empezar</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-center font-sub text-lg text-muted">
+            Visita de un Ing. Civil visado por el CIV. El informe cubre estructura, estado por ambiente y presupuesto para alquilar, vender o mantener.
           </p>
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
-            <article className="rounded-card border border-line bg-paper p-7">
-              <p className="font-display text-3xl text-brick">1</p>
-              <h3 className="mt-3 font-display text-2xl">Diagnóstico con datos reales</h3>
-              <p className="mt-3 font-sub text-muted">
-                Un Ing. Civil hace la visita: mediciones, estado de la propiedad, fotos y video. Te entregamos un informe claro de qué se debería hacer para alquilar, vender o esperar, y qué ingresos puedes obtener.
-              </p>
+
+          <div className="mt-14 grid items-start gap-6 lg:grid-cols-3">
+            <article className="rounded-card border border-line bg-paper p-8">
+              <h3 className="font-display text-3xl">Básico</h3>
+              <p className="mt-4 font-display text-5xl tracking-tight">1.000 <span className="text-2xl text-muted">USD</span></p>
+              <p className="mt-4 font-sub text-muted">Para saber cómo está y cuánto cuesta cada camino.</p>
+              <ul className="mt-6 space-y-3 border-t border-line pt-6 font-sub text-[17px] leading-snug">
+                <li>Visita presencial y mediciones</li>
+                <li>Informe estructural post-sismo</li>
+                <li>Estado operativo, ambiente por ambiente, con fotos y video</li>
+                <li>Presupuesto para alquilar, vender y mantener</li>
+                <li>Inventario de lo que hay</li>
+                <li>Checklist de documentos para alquilar o vender</li>
+              </ul>
             </article>
-            <article className="rounded-card border border-line bg-paper p-7">
-              <p className="font-display text-3xl text-brick">2</p>
-              <h3 className="mt-3 font-display text-2xl">Obras, reformas y remodelación</h3>
-              <p className="mt-3 font-sub text-muted">
-                Determinamos juntos el mejor camino de lo que necesita y su beneficio. Presupuestos, seguimiento, ejecución y control de calidad. Dejamos la propiedad lista para alquilar o vender. Tú apruebas cada paso.
-              </p>
+
+            <article className="rounded-card border-2 border-ink bg-paper p-8">
+              <h3 className="font-display text-3xl">Pro</h3>
+              <p className="mt-4 font-display text-5xl tracking-tight">2.500 <span className="text-2xl text-muted">USD</span></p>
+              <p className="mt-4 font-sub text-muted">El informe, y el inmueble vacío y limpio.</p>
+              <ul className="mt-6 space-y-3 border-t border-line pt-6 font-sub text-[17px] leading-snug">
+                <li>Todo el básico</li>
+                <li>Retiro y disposición de muebles dañados</li>
+                <li>Mudanza de lo que quieras conservar</li>
+                <li>Limpieza profunda</li>
+                <li>Listo para enseñar, sin obra todavía</li>
+              </ul>
             </article>
-            <article className="rounded-card border border-line bg-paper p-7">
-              <p className="font-display text-3xl text-brick">3</p>
-              <h3 className="mt-3 font-display text-2xl">Gestión integral</h3>
-              <p className="mt-3 font-sub text-muted">
-                Buscamos inquilino o comprador, hacemos y firmamos contratos, cobramos y transferimos en tu divisa de preferencia, gestionamos incidencias, presupuestos y mantenimiento. Tú recibes dinero y reportes.
-              </p>
-            </article>
-            <article className="rounded-card border border-line bg-paper p-7 md:col-span-3">
-              <p className="font-display text-3xl text-brick">4</p>
-              <h3 className="mt-3 font-display text-2xl">Seguridad y transparencia</h3>
-              <p className="mt-3 max-w-3xl font-sub text-muted">
-                Equipo con más de 20 años de experiencia y titulaciones de universidades nacionales. Foto reportaje, videos e informes regulares. Nada se hace sin tu aprobación, y todo sin tu esfuerzo.
-              </p>
+
+            <article className="rounded-card bg-ink p-8 text-cream">
+              <h3 className="font-display text-3xl">VIP</h3>
+              <p className="mt-4 font-display text-5xl tracking-tight text-income">5.000 <span className="text-2xl text-cream/60">USD</span></p>
+              <p className="mt-4 font-sub text-cream/70">Para presentarlo como si ya estuviera en el mercado.</p>
+              <ul className="mt-6 space-y-3 border-t border-cream/15 pt-6 font-sub text-[17px] leading-snug text-cream/90">
+                <li>Todo el pro</li>
+                <li>Propuesta de diseñador de interiores</li>
+                <li>Staging del inmueble</li>
+                <li>Sesión de fotografías para mostrarlo</li>
+                <li>Material listo para inquilino o comprador</li>
+              </ul>
             </article>
           </div>
+
+          <p className="mt-12 text-center">
+            <button type="button" onClick={openForm} className="rounded-full bg-brick px-7 py-3.5 text-base font-semibold text-cream">
+              Pide tu diagnóstico
+            </button>
+          </p>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-5 py-24">
+        <p className="text-center text-sm font-semibold tracking-[0.18em] text-brick uppercase">2 · Activación</p>
+        <h2 className="mt-3 text-center font-display text-4xl tracking-tight sm:text-5xl">Las obras que necesitas</h2>
+        <p className="mx-auto mt-4 max-w-xl text-center font-sub text-lg text-muted">
+          A medida.
+        </p>
+        <div className="mx-auto mt-12 grid max-w-4xl gap-x-16 gap-y-8 sm:grid-cols-2">
+          {[
+            ["Pintura", "General o por ambiente, según el camino."],
+            ["Reparaciones", "Tomas, sifones, filtraciones y tablero."],
+            ["Humedad", "Tratamiento de manchas y filtraciones."],
+            ["Cocina y baños", "Muebles y sanitarios que no sirven."],
+            ["Muebles", "Retiro, mudanza o lo que quieras guardar."],
+            ["Llaves", "Custodia y acceso, sin que viajes."],
+          ].map(([title, text]) => (
+            <div key={title} className="border-t border-ink/20 pt-4">
+              <h3 className="font-display text-2xl">{title}</h3>
+              <p className="mt-1 font-sub text-muted">{text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-cream py-24">
+        <div className="mx-auto max-w-6xl px-5">
+          <p className="text-center text-sm font-semibold tracking-[0.18em] text-brick uppercase">3 · Gestión</p>
+          <h2 className="mt-3 text-center font-display text-4xl tracking-tight sm:text-5xl">Dinero a tu cuenta</h2>
+          <p className="mx-auto mt-4 max-w-xl text-center font-sub text-lg text-muted">
+            En tu divisa de preferencia.
+          </p>
+          <div className="mt-14 grid gap-10 md:grid-cols-3">
+            <article>
+              <h3 className="font-display text-3xl">Alquilar</h3>
+              <p className="mt-3 font-sub text-lg text-muted">Buscamos inquilino, firmamos el contrato y cobramos el canon.</p>
+            </article>
+            <article>
+              <h3 className="font-display text-3xl">Vender</h3>
+              <p className="mt-3 font-sub text-lg text-muted">Buscamos comprador y te acompañamos al cierre. Una vez.</p>
+            </article>
+            <article>
+              <h3 className="font-display text-3xl">Mantener</h3>
+              <p className="mt-3 font-sub text-lg text-muted">Condominio, servicios y lo que se rompa. Sin inquilino.</p>
+            </article>
+          </div>
+          <p className="mx-auto mt-12 max-w-2xl text-center font-sub text-muted">
+            En los tres: incidencias, mantenimiento y reportes.
+          </p>
         </div>
       </section>
 
@@ -197,7 +291,7 @@ function Home() {
       </section>
 
       <footer className="border-t border-line px-5 py-8 text-center text-sm text-muted">
-        Venezuela Activa
+        Activa Venezuela
       </footer>
 
       {open ? (
@@ -213,7 +307,7 @@ function Home() {
                 <h2 id="diag-title" className="font-display text-3xl tracking-tight">
                   {sent ? "Listo" : "Pide tu diagnóstico"}
                 </h2>
-                <p className="mt-1 font-sub text-sm text-muted">Te contactamos lo antes posible.</p>
+                <p className="mt-1 font-sub text-sm text-muted">Una llamada corta. El resto lo vemos ahí.</p>
               </div>
               <button
                 type="button"
@@ -228,7 +322,7 @@ function Home() {
               <div className="rounded-2xl border border-line bg-paper p-5">
                 <p className="font-display text-2xl">Recibimos tu solicitud.</p>
                 <p className="mt-2 font-sub text-muted">
-                  Te contactamos lo antes posible por correo o WhatsApp.
+                  Te escribimos por WhatsApp para coordinar una llamada de 15 minutos.
                 </p>
                 <button
                   type="button"
@@ -240,7 +334,7 @@ function Home() {
               </div>
             ) : (
               <form onSubmit={submit} className="grid gap-3">
-                <Field label="Nombre *">
+                <Field label="Nombre completo *">
                   <input required value={form.nombre} onChange={(e) => update("nombre", e.target.value)} className={inputClass} />
                 </Field>
                 <Field label="Correo *">
@@ -249,48 +343,31 @@ function Home() {
                 <Field label="WhatsApp *">
                   <input required type="tel" value={form.whatsapp} onChange={(e) => update("whatsapp", e.target.value)} placeholder="+58 o internacional" className={inputClass} />
                 </Field>
-                <Field label="¿Qué quieres hacer con tu propiedad? *">
+                <Field label="¿Qué quieres hacer? *">
                   <select required value={form.objetivo} onChange={(e) => update("objetivo", e.target.value)} className={inputClass}>
                     <option value="">Selecciona</option>
                     <option>Alquilar</option>
                     <option>Vender</option>
+                    <option>Mantenimiento</option>
                   </select>
                 </Field>
-                <Field label="Dirección completa de la propiedad *">
+                <Field label="Estado *">
+                  <select required value={form.entidad} onChange={(e) => update("entidad", e.target.value)} className={inputClass}>
+                    <option value="">Selecciona</option>
+                    {ESTADOS.map((estado) => (
+                      <option key={estado}>{estado}</option>
+                    ))}
+                  </select>
+                </Field>
+                <Field label="Dirección *">
                   <input required value={form.direccion} onChange={(e) => update("direccion", e.target.value)} placeholder="Urbanización, edificio, apartamento, ciudad" className={inputClass} />
                 </Field>
-                <Field label="Metros aproximados o exactos">
-                  <input value={form.metros} onChange={(e) => update("metros", e.target.value)} placeholder="Ej. 120 m² o no lo sé" className={inputClass} />
-                </Field>
-                <Field label="Habitaciones">
-                  <input value={form.habs} onChange={(e) => update("habs", e.target.value)} placeholder="Ej. 3" className={inputClass} />
-                </Field>
-                <Field label="Baños">
-                  <input value={form.banos} onChange={(e) => update("banos", e.target.value)} placeholder="Ej. 2" className={inputClass} />
-                </Field>
-                <Field label="Presupuesto orientativo (USD)">
-                  <select value={form.presupuesto} onChange={(e) => update("presupuesto", e.target.value)} className={inputClass}>
-                    <option value="">Selecciona</option>
-                    <option>De 0 a 2.000</option>
-                    <option>De 2.000 a 5.000</option>
-                    <option>Más de 5.000</option>
-                  </select>
-                </Field>
-                <Field label="¿Cuántos años lleva sin mantenimiento o uso?">
-                  <input value={form.anos} onChange={(e) => update("anos", e.target.value)} placeholder="Ej. 3 años" className={inputClass} />
-                </Field>
-                <Field label="Estado actual de la propiedad">
-                  <textarea value={form.estado} onChange={(e) => update("estado", e.target.value)} placeholder="¿Habitada, vacía, reparaciones, deudas de condominio?" className={`${inputClass} min-h-20`} />
-                </Field>
-                <Field label="¿Tienes cédula catastral o documentos?">
-                  <input value={form.documentos} onChange={(e) => update("documentos", e.target.value)} placeholder="Sí / No / Puedo conseguirla" className={inputClass} />
-                </Field>
-                <Field label="Comentarios">
-                  <textarea value={form.comentarios} onChange={(e) => update("comentarios", e.target.value)} className={`${inputClass} min-h-20`} />
+                <Field label="Metros, si los sabes">
+                  <input value={form.metros} onChange={(e) => update("metros", e.target.value)} placeholder="Ej. 120 m²" className={inputClass} />
                 </Field>
                 {error ? <p className="text-sm text-brick">{error}</p> : null}
                 <button type="submit" className="mt-1 rounded-full bg-brick py-3.5 font-semibold text-cream">
-                  Enviar diagnóstico
+                  Quiero que me llamen
                 </button>
               </form>
             )}
@@ -300,6 +377,33 @@ function Home() {
     </div>
   );
 }
+
+const ESTADOS = [
+  "Distrito Capital",
+  "Amazonas",
+  "Anzoátegui",
+  "Apure",
+  "Aragua",
+  "Barinas",
+  "Bolívar",
+  "Carabobo",
+  "Cojedes",
+  "Delta Amacuro",
+  "Falcón",
+  "Guárico",
+  "Lara",
+  "La Guaira",
+  "Mérida",
+  "Miranda",
+  "Monagas",
+  "Nueva Esparta",
+  "Portuguesa",
+  "Sucre",
+  "Táchira",
+  "Trujillo",
+  "Yaracuy",
+  "Zulia",
+];
 
 const inputClass =
   "w-full rounded-xl border border-line bg-paper px-3 py-3 text-base text-ink outline-none focus:border-ink";
