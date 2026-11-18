@@ -1,16 +1,16 @@
 import { i as __toESM } from "../_runtime.mjs";
 import { K as require_react, b as require_jsx_runtime } from "../_libs/@tanstack/react-router+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-Bl7vJZeE.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-CKt8BzX0.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var EMPTY = {
 	nombre: "",
-	correo: "",
 	whatsapp: "",
+	correo: "",
+	tipo: "",
 	objetivo: "",
-	entidad: "",
-	direccion: "",
-	metros: ""
+	municipio: "",
+	direccion: ""
 };
 function Home() {
 	const [open, setOpen] = (0, import_react.useState)(false);
@@ -29,8 +29,8 @@ function Home() {
 	}
 	function submit(event) {
 		event.preventDefault();
-		if (!form.nombre.trim() || !form.correo.trim() || !form.whatsapp.trim() || !form.objetivo || !form.entidad || !form.direccion.trim()) {
-			setError("Completa nombre, correo, WhatsApp, qué quieres hacer, estado y dirección.");
+		if (!form.nombre.trim() || !form.whatsapp.trim() || !form.correo.trim() || !form.tipo || !form.objetivo || !form.municipio || !form.direccion.trim()) {
+			setError("Completa nombre, WhatsApp, correo, tipo, objetivo, municipio y dirección.");
 			return;
 		}
 		if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.correo.trim())) {
@@ -41,8 +41,9 @@ function Home() {
 		w.dataLayer = w.dataLayer || [];
 		w.dataLayer.push({
 			event: "generar_lead",
+			tipo: form.tipo,
 			objetivo: form.objetivo,
-			entidad: form.entidad
+			municipio: form.municipio
 		});
 		w.fbq?.("track", "Lead");
 		const prev = JSON.parse(localStorage.getItem("va-diagnosticos") || "[]");
@@ -509,7 +510,7 @@ function Home() {
 						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
 							id: "diag-title",
 							className: "font-display text-3xl tracking-tight",
-							children: sent ? "Listo" : "Pide tu diagnóstico"
+							children: sent ? "Listo" : "Solicitar el diagnóstico"
 						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 							className: "mt-1 font-sub text-sm text-muted",
 							children: "Una llamada corta. El resto lo vemos ahí."
@@ -545,18 +546,9 @@ function Home() {
 								label: "Nombre completo *",
 								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
 									required: true,
+									autoComplete: "name",
 									value: form.nombre,
 									onChange: (e) => update("nombre", e.target.value),
-									className: inputClass
-								})
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Field, {
-								label: "Correo *",
-								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
-									required: true,
-									type: "email",
-									value: form.correo,
-									onChange: (e) => update("correo", e.target.value),
 									className: inputClass
 								})
 							}),
@@ -565,59 +557,84 @@ function Home() {
 								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
 									required: true,
 									type: "tel",
+									inputMode: "tel",
+									autoComplete: "tel",
 									value: form.whatsapp,
 									onChange: (e) => update("whatsapp", e.target.value),
-									placeholder: "+58 o internacional",
+									placeholder: "+58 412 000 0000",
 									className: inputClass
 								})
 							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Field, {
-								label: "¿Qué quieres hacer? *",
-								children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("select", {
+								label: "Correo electrónico *",
+								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
 									required: true,
-									value: form.objetivo,
-									onChange: (e) => update("objetivo", e.target.value),
-									className: inputClass,
-									children: [
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
-											value: "",
-											children: "Selecciona"
-										}),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { children: "Alquilar" }),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { children: "Vender" }),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { children: "Mantenimiento" })
-									]
+									type: "email",
+									autoComplete: "email",
+									value: form.correo,
+									onChange: (e) => update("correo", e.target.value),
+									className: inputClass
 								})
 							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("fieldset", {
+								className: "grid gap-1.5",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("legend", {
+									className: "text-sm font-medium",
+									children: "Tipo de diagnóstico *"
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "grid grid-cols-3 gap-2",
+									children: TIPOS.map((tipo) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Choice, {
+										name: "tipo",
+										value: tipo.id,
+										current: form.tipo,
+										onChange: (value) => update("tipo", value),
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: "block font-semibold",
+											children: tipo.id
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: "block text-xs opacity-80",
+											children: tipo.precio
+										})]
+									}, tipo.id))
+								})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("fieldset", {
+								className: "grid gap-1.5",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("legend", {
+									className: "text-sm font-medium",
+									children: "Objetivo con el inmueble *"
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "grid grid-cols-3 gap-2",
+									children: OBJETIVOS.map((objetivo) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Choice, {
+										name: "objetivo",
+										value: objetivo,
+										current: form.objetivo,
+										onChange: (value) => update("objetivo", value),
+										children: objetivo
+									}, objetivo))
+								})]
+							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Field, {
-								label: "Estado *",
+								label: "Municipio *",
 								children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("select", {
 									required: true,
-									value: form.entidad,
-									onChange: (e) => update("entidad", e.target.value),
+									value: form.municipio,
+									onChange: (e) => update("municipio", e.target.value),
 									className: inputClass,
 									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
 										value: "",
 										children: "Selecciona"
-									}), ESTADOS.map((estado) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { children: estado }, estado))]
+									}), MUNICIPIOS.map((municipio) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { children: municipio }, municipio))]
 								})
 							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Field, {
 								label: "Dirección *",
 								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
 									required: true,
+									autoComplete: "street-address",
 									value: form.direccion,
 									onChange: (e) => update("direccion", e.target.value),
-									placeholder: "Urbanización, edificio, apartamento, ciudad",
-									className: inputClass
-								})
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Field, {
-								label: "Metros, si los sabes",
-								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
-									value: form.metros,
-									onChange: (e) => update("metros", e.target.value),
-									placeholder: "Ej. 120 m²",
+									placeholder: "Urbanización, edificio, apartamento",
 									className: inputClass
 								})
 							}),
@@ -628,7 +645,7 @@ function Home() {
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 								type: "submit",
 								className: "mt-1 rounded-full bg-brick py-3.5 font-semibold text-cream",
-								children: "Quiero que me llamen"
+								children: "Solicitar el diagnóstico"
 							})
 						]
 					})]
@@ -637,33 +654,49 @@ function Home() {
 		]
 	});
 }
-var ESTADOS = [
-	"Distrito Capital",
-	"Amazonas",
-	"Anzoátegui",
-	"Apure",
-	"Aragua",
-	"Barinas",
-	"Bolívar",
-	"Carabobo",
-	"Cojedes",
-	"Delta Amacuro",
-	"Falcón",
-	"Guárico",
-	"Lara",
-	"La Guaira",
-	"Mérida",
-	"Miranda",
-	"Monagas",
-	"Nueva Esparta",
-	"Portuguesa",
+var TIPOS = [
+	{
+		id: "Básico",
+		precio: "1.000 USD"
+	},
+	{
+		id: "Pro",
+		precio: "2.500 USD"
+	},
+	{
+		id: "VIP",
+		precio: "5.000 USD"
+	}
+];
+var OBJETIVOS = [
+	"Mantener",
+	"Alquilar",
+	"Vender"
+];
+var MUNICIPIOS = [
+	"Baruta",
+	"Chacao",
+	"El Hatillo",
+	"Libertador",
 	"Sucre",
-	"Táchira",
-	"Trujillo",
-	"Yaracuy",
-	"Zulia"
+	"Otro"
 ];
 var inputClass = "w-full rounded-xl border border-line bg-paper px-3 py-3 text-base text-ink outline-none focus:border-ink";
+function Choice({ name, value, current, onChange, children }) {
+	const on = current === value;
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", {
+		className: `cursor-pointer rounded-xl border px-2 py-2.5 text-center text-sm ${on ? "border-ink bg-ink text-cream" : "border-line bg-paper text-ink"}`,
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+			className: "sr-only",
+			type: "radio",
+			name,
+			value,
+			checked: on,
+			required: true,
+			onChange: () => onChange(value)
+		}), children]
+	});
+}
 function Field({ label, children }) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", {
 		className: "grid gap-1.5 text-sm font-medium",

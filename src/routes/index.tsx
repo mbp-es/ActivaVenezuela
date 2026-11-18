@@ -5,22 +5,22 @@ export const Route = createFileRoute("/")({ component: Home });
 
 type FormState = {
   nombre: string;
-  correo: string;
   whatsapp: string;
+  correo: string;
+  tipo: string;
   objetivo: string;
-  entidad: string;
+  municipio: string;
   direccion: string;
-  metros: string;
 };
 
 const EMPTY: FormState = {
   nombre: "",
-  correo: "",
   whatsapp: "",
+  correo: "",
+  tipo: "",
   objetivo: "",
-  entidad: "",
+  municipio: "",
   direccion: "",
-  metros: "",
 };
 
 function Home() {
@@ -40,8 +40,8 @@ function Home() {
 
   function submit(event: FormEvent) {
     event.preventDefault();
-    if (!form.nombre.trim() || !form.correo.trim() || !form.whatsapp.trim() || !form.objetivo || !form.entidad || !form.direccion.trim()) {
-      setError("Completa nombre, correo, WhatsApp, qué quieres hacer, estado y dirección.");
+    if (!form.nombre.trim() || !form.whatsapp.trim() || !form.correo.trim() || !form.tipo || !form.objetivo || !form.municipio || !form.direccion.trim()) {
+      setError("Completa nombre, WhatsApp, correo, tipo, objetivo, municipio y dirección.");
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.correo.trim())) {
@@ -50,7 +50,7 @@ function Home() {
     }
     const w = window as Window & { dataLayer?: Record<string, unknown>[]; fbq?: (...args: unknown[]) => void };
     w.dataLayer = w.dataLayer || [];
-    w.dataLayer.push({ event: "generar_lead", objetivo: form.objetivo, entidad: form.entidad });
+    w.dataLayer.push({ event: "generar_lead", tipo: form.tipo, objetivo: form.objetivo, municipio: form.municipio });
     w.fbq?.("track", "Lead");
     const prev = JSON.parse(localStorage.getItem("va-diagnosticos") || "[]") as FormState[];
     localStorage.setItem("va-diagnosticos", JSON.stringify([{ ...form, at: new Date().toISOString() }, ...prev].slice(0, 20)));
@@ -305,7 +305,7 @@ function Home() {
             <div className="mb-5 flex items-start justify-between gap-4">
               <div>
                 <h2 id="diag-title" className="font-display text-3xl tracking-tight">
-                  {sent ? "Listo" : "Pide tu diagnóstico"}
+                  {sent ? "Listo" : "Solicitar el diagnóstico"}
                 </h2>
                 <p className="mt-1 font-sub text-sm text-muted">Una llamada corta. El resto lo vemos ahí.</p>
               </div>
@@ -335,39 +335,49 @@ function Home() {
             ) : (
               <form onSubmit={submit} className="grid gap-3">
                 <Field label="Nombre completo *">
-                  <input required value={form.nombre} onChange={(e) => update("nombre", e.target.value)} className={inputClass} />
-                </Field>
-                <Field label="Correo *">
-                  <input required type="email" value={form.correo} onChange={(e) => update("correo", e.target.value)} className={inputClass} />
+                  <input required autoComplete="name" value={form.nombre} onChange={(e) => update("nombre", e.target.value)} className={inputClass} />
                 </Field>
                 <Field label="WhatsApp *">
-                  <input required type="tel" value={form.whatsapp} onChange={(e) => update("whatsapp", e.target.value)} placeholder="+58 o internacional" className={inputClass} />
+                  <input required type="tel" inputMode="tel" autoComplete="tel" value={form.whatsapp} onChange={(e) => update("whatsapp", e.target.value)} placeholder="+58 412 000 0000" className={inputClass} />
                 </Field>
-                <Field label="¿Qué quieres hacer? *">
-                  <select required value={form.objetivo} onChange={(e) => update("objetivo", e.target.value)} className={inputClass}>
-                    <option value="">Selecciona</option>
-                    <option>Alquilar</option>
-                    <option>Vender</option>
-                    <option>Mantenimiento</option>
-                  </select>
+                <Field label="Correo electrónico *">
+                  <input required type="email" autoComplete="email" value={form.correo} onChange={(e) => update("correo", e.target.value)} className={inputClass} />
                 </Field>
-                <Field label="Estado *">
-                  <select required value={form.entidad} onChange={(e) => update("entidad", e.target.value)} className={inputClass}>
+                <fieldset className="grid gap-1.5">
+                  <legend className="text-sm font-medium">Tipo de diagnóstico *</legend>
+                  <div className="grid grid-cols-3 gap-2">
+                    {TIPOS.map((tipo) => (
+                      <Choice key={tipo.id} name="tipo" value={tipo.id} current={form.tipo} onChange={(value) => update("tipo", value)}>
+                        <span className="block font-semibold">{tipo.id}</span>
+                        <span className="block text-xs opacity-80">{tipo.precio}</span>
+                      </Choice>
+                    ))}
+                  </div>
+                </fieldset>
+                <fieldset className="grid gap-1.5">
+                  <legend className="text-sm font-medium">Objetivo con el inmueble *</legend>
+                  <div className="grid grid-cols-3 gap-2">
+                    {OBJETIVOS.map((objetivo) => (
+                      <Choice key={objetivo} name="objetivo" value={objetivo} current={form.objetivo} onChange={(value) => update("objetivo", value)}>
+                        {objetivo}
+                      </Choice>
+                    ))}
+                  </div>
+                </fieldset>
+                <Field label="Municipio *">
+                  <select required value={form.municipio} onChange={(e) => update("municipio", e.target.value)} className={inputClass}>
                     <option value="">Selecciona</option>
-                    {ESTADOS.map((estado) => (
-                      <option key={estado}>{estado}</option>
+                    {MUNICIPIOS.map((municipio) => (
+                      <option key={municipio}>{municipio}</option>
                     ))}
                   </select>
                 </Field>
                 <Field label="Dirección *">
-                  <input required value={form.direccion} onChange={(e) => update("direccion", e.target.value)} placeholder="Urbanización, edificio, apartamento, ciudad" className={inputClass} />
-                </Field>
-                <Field label="Metros, si los sabes">
-                  <input value={form.metros} onChange={(e) => update("metros", e.target.value)} placeholder="Ej. 120 m²" className={inputClass} />
+                  <input required autoComplete="street-address" value={form.direccion} onChange={(e) => update("direccion", e.target.value)} placeholder="Urbanización, edificio, apartamento" className={inputClass} />
                 </Field>
                 {error ? <p className="text-sm text-brick">{error}</p> : null}
                 <button type="submit" className="mt-1 rounded-full bg-brick py-3.5 font-semibold text-cream">
-                  Quiero que me llamen
+                  Solicitar el diagnóstico
                 </button>
               </form>
             )}
@@ -378,35 +388,42 @@ function Home() {
   );
 }
 
-const ESTADOS = [
-  "Distrito Capital",
-  "Amazonas",
-  "Anzoátegui",
-  "Apure",
-  "Aragua",
-  "Barinas",
-  "Bolívar",
-  "Carabobo",
-  "Cojedes",
-  "Delta Amacuro",
-  "Falcón",
-  "Guárico",
-  "Lara",
-  "La Guaira",
-  "Mérida",
-  "Miranda",
-  "Monagas",
-  "Nueva Esparta",
-  "Portuguesa",
-  "Sucre",
-  "Táchira",
-  "Trujillo",
-  "Yaracuy",
-  "Zulia",
+const TIPOS = [
+  { id: "Básico", precio: "1.000 USD" },
+  { id: "Pro", precio: "2.500 USD" },
+  { id: "VIP", precio: "5.000 USD" },
 ];
+
+const OBJETIVOS = ["Mantener", "Alquilar", "Vender"];
+
+const MUNICIPIOS = ["Baruta", "Chacao", "El Hatillo", "Libertador", "Sucre", "Otro"];
 
 const inputClass =
   "w-full rounded-xl border border-line bg-paper px-3 py-3 text-base text-ink outline-none focus:border-ink";
+
+function Choice({
+  name,
+  value,
+  current,
+  onChange,
+  children,
+}: {
+  name: string;
+  value: string;
+  current: string;
+  onChange: (value: string) => void;
+  children: ReactNode;
+}) {
+  const on = current === value;
+  return (
+    <label
+      className={`cursor-pointer rounded-xl border px-2 py-2.5 text-center text-sm ${on ? "border-ink bg-ink text-cream" : "border-line bg-paper text-ink"}`}
+    >
+      <input className="sr-only" type="radio" name={name} value={value} checked={on} required onChange={() => onChange(value)} />
+      {children}
+    </label>
+  );
+}
 
 function Field({ label, children }: { label: string; children: ReactNode }) {
   return (
