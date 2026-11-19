@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
+import { ESTADOS, MUNICIPIOS } from "@/lib/municipios";
 
 export const Route = createFileRoute("/")({ component: Home });
 
@@ -9,8 +10,11 @@ type FormState = {
   correo: string;
   tipo: string;
   objetivo: string;
+  estado: string;
   municipio: string;
   direccion: string;
+  comentarios: string;
+  agenda: boolean;
 };
 
 const EMPTY: FormState = {
@@ -19,43 +23,39 @@ const EMPTY: FormState = {
   correo: "",
   tipo: "",
   objetivo: "",
+  estado: "",
   municipio: "",
   direccion: "",
+  comentarios: "",
+  agenda: false,
 };
+
+const CALENDAR_URL = "";
 
 function Home() {
   const [open, setOpen] = useState(false);
-  const [sent, setSent] = useState(false);
-  const [error, setError] = useState("");
+  const [toast, setToast] = useState(false);
   const [form, setForm] = useState<FormState>(EMPTY);
 
   function openForm() {
     setOpen(true);
-    setError("");
   }
 
   function update(key: keyof FormState, value: string) {
-    setForm((prev) => ({ ...prev, [key]: value }));
+    setForm((prev) => ({ ...prev, [key]: value, ...(key === "estado" ? { municipio: "" } : {}) }));
   }
 
   function submit(event: FormEvent) {
     event.preventDefault();
-    if (!form.nombre.trim() || !form.whatsapp.trim() || !form.correo.trim() || !form.tipo || !form.objetivo || !form.municipio || !form.direccion.trim()) {
-      setError("Completa nombre, WhatsApp, correo, tipo, objetivo, municipio y dirección.");
-      return;
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.correo.trim())) {
-      setError("El correo no se ve válido.");
-      return;
-    }
     const w = window as Window & { dataLayer?: Record<string, unknown>[]; fbq?: (...args: unknown[]) => void };
-    w.dataLayer = w.dataLayer || [];
-    w.dataLayer.push({ event: "generar_lead", tipo: form.tipo, objetivo: form.objetivo, municipio: form.municipio });
-    w.fbq?.("track", "Lead");
+    if (form.nombre.trim() && form.correo.trim()) {
+      w.dataLayer = w.dataLayer || [];
+      w.dataLayer.push({ event: "generar_lead", tipo: form.tipo, objetivo: form.objetivo, estado: form.estado, municipio: form.municipio });
+      w.fbq?.("track", "Lead");
+    }
     const prev = JSON.parse(localStorage.getItem("va-diagnosticos") || "[]") as FormState[];
     localStorage.setItem("va-diagnosticos", JSON.stringify([{ ...form, at: new Date().toISOString() }, ...prev].slice(0, 20)));
-    setError("");
-    setSent(true);
+    setToast(true);
   }
 
   return (
@@ -300,52 +300,33 @@ function Home() {
             role="dialog"
             aria-modal="true"
             aria-labelledby="diag-title"
-            className="max-h-[92vh] w-full max-w-lg overflow-y-auto rounded-t-3xl bg-cream p-6 shadow-2xl sm:rounded-3xl"
+            className="relative max-h-[92vh] w-full max-w-lg overflow-y-auto rounded-t-3xl bg-cream p-6 pt-14 shadow-2xl sm:rounded-3xl"
           >
-            <div className="mb-5 flex items-start justify-between gap-4">
-              <div>
-                <h2 id="diag-title" className="font-display text-3xl tracking-tight">
-                  {sent ? "Listo" : "Solicitar el diagnóstico"}
-                </h2>
-                <p className="mt-1 font-sub text-sm text-muted">Una llamada corta. El resto lo vemos ahí.</p>
-              </div>
-              <button
-                type="button"
-                onClick={() => setOpen(false)}
-                className="rounded-full px-3 py-1 text-sm text-muted"
-              >
-                Cerrar
-              </button>
-            </div>
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              aria-label="Cerrar"
+              className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full text-2xl leading-none text-ink hover:bg-paper"
+            >
+              ×
+            </button>
+            <h2 id="diag-title" className="mb-6 text-center font-display text-2xl tracking-tight">
+              Activa <span className="text-brick">Venezuela</span>
+            </h2>
 
-            {sent ? (
-              <div className="rounded-2xl border border-line bg-paper p-5">
-                <p className="font-display text-2xl">Recibimos tu solicitud.</p>
-                <p className="mt-2 font-sub text-muted">
-                  Te escribimos por WhatsApp para coordinar una llamada de 15 minutos.
-                </p>
-                <button
-                  type="button"
-                  onClick={() => setOpen(false)}
-                  className="mt-5 w-full rounded-full bg-brick py-3 font-semibold text-cream"
-                >
-                  Cerrar
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={submit} className="grid gap-3">
+            <form onSubmit={submit} className="grid gap-3">
                 <Field label="Nombre completo *">
-                  <input required autoComplete="name" value={form.nombre} onChange={(e) => update("nombre", e.target.value)} className={inputClass} />
+                  <input autoComplete="name" value={form.nombre} onChange={(e) => update("nombre", e.target.value)} placeholder="María Pérez" className={inputClass} />
                 </Field>
                 <Field label="WhatsApp *">
-                  <input required type="tel" inputMode="tel" autoComplete="tel" value={form.whatsapp} onChange={(e) => update("whatsapp", e.target.value)} placeholder="+58 412 000 0000" className={inputClass} />
+                  <input type="tel" inputMode="tel" autoComplete="tel" value={form.whatsapp} onChange={(e) => update("whatsapp", e.target.value)} placeholder="+58 412 000 0000" className={inputClass} />
                 </Field>
                 <Field label="Correo electrónico *">
-                  <input required type="email" autoComplete="email" value={form.correo} onChange={(e) => update("correo", e.target.value)} className={inputClass} />
+                  <input type="email" autoComplete="email" value={form.correo} onChange={(e) => update("correo", e.target.value)} placeholder="maria@correo.com" className={inputClass} />
                 </Field>
                 <fieldset className="grid gap-1.5">
                   <legend className="text-sm font-medium">Tipo de diagnóstico *</legend>
-                  <div className="grid grid-cols-3 gap-2">
+                  <div className="grid grid-cols-2 gap-2">
                     {TIPOS.map((tipo) => (
                       <Choice key={tipo.id} name="tipo" value={tipo.id} current={form.tipo} onChange={(value) => update("tipo", value)}>
                         <span className="block font-semibold">{tipo.id}</span>
@@ -356,7 +337,7 @@ function Home() {
                 </fieldset>
                 <fieldset className="grid gap-1.5">
                   <legend className="text-sm font-medium">Objetivo con el inmueble *</legend>
-                  <div className="grid grid-cols-3 gap-2">
+                  <div className="grid grid-cols-2 gap-2">
                     {OBJETIVOS.map((objetivo) => (
                       <Choice key={objetivo} name="objetivo" value={objetivo} current={form.objetivo} onChange={(value) => update("objetivo", value)}>
                         {objetivo}
@@ -364,25 +345,54 @@ function Home() {
                     ))}
                   </div>
                 </fieldset>
-                <Field label="Municipio *">
-                  <select required value={form.municipio} onChange={(e) => update("municipio", e.target.value)} className={inputClass}>
+                <Field label="Estado *">
+                  <select value={form.estado} onChange={(e) => update("estado", e.target.value)} className={inputClass}>
                     <option value="">Selecciona</option>
-                    {MUNICIPIOS.map((municipio) => (
+                    {ESTADOS.map((estado) => (
+                      <option key={estado}>{estado}</option>
+                    ))}
+                  </select>
+                </Field>
+                <Field label="Municipio *">
+                  <select value={form.municipio} disabled={!form.estado} onChange={(e) => update("municipio", e.target.value)} className={inputClass}>
+                    <option value="">{form.estado ? "Selecciona" : "Primero el estado"}</option>
+                    {(MUNICIPIOS[form.estado] ?? []).map((municipio) => (
                       <option key={municipio}>{municipio}</option>
                     ))}
                   </select>
                 </Field>
                 <Field label="Dirección *">
-                  <input required autoComplete="street-address" value={form.direccion} onChange={(e) => update("direccion", e.target.value)} placeholder="Urbanización, edificio, apartamento" className={inputClass} />
+                  <input autoComplete="street-address" value={form.direccion} onChange={(e) => update("direccion", e.target.value)} placeholder="Urbanización, edificio, apartamento" className={inputClass} />
                 </Field>
-                {error ? <p className="text-sm text-brick">{error}</p> : null}
+                <Field label="Comentarios">
+                  <textarea value={form.comentarios} onChange={(e) => update("comentarios", e.target.value)} rows={4} placeholder="120 m², tiene jardín, 6 años sin mantenimiento" className={inputClass} />
+                  <span className="font-normal text-muted">Entre más información, mejor nos preparamos para resolver todas las dudas durante la llamada.</span>
+                </Field>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setForm((prev) => ({ ...prev, agenda: true }));
+                    if (CALENDAR_URL) window.open(CALENDAR_URL, "_blank", "noopener,noreferrer");
+                  }}
+                  className={`rounded-xl border px-3 py-3 text-left text-sm font-semibold ${form.agenda ? "border-ink bg-ink text-cream" : "border-line bg-paper"}`}
+                >
+                  Agendar videoconferencia
+                </button>
                 <button type="submit" className="mt-1 rounded-full bg-brick py-3.5 font-semibold text-cream">
                   Solicitar el diagnóstico
                 </button>
               </form>
-            )}
           </div>
         </div>
+      ) : null}
+      {toast ? (
+        <>
+          <Celebration />
+          <div className="fixed bottom-6 left-1/2 z-[90] w-[min(92vw,28rem)] -translate-x-1/2 rounded-2xl bg-ink px-5 py-4 text-center text-cream shadow-2xl">
+            <p className="font-display text-2xl">Tu diagnóstico fue solicitado.</p>
+            <p className="mt-1 font-sub text-cream/80">Recibirás respuesta en las próximas 24 horas.</p>
+          </div>
+        </>
       ) : null}
     </div>
   );
@@ -392,14 +402,97 @@ const TIPOS = [
   { id: "Básico", precio: "1.000 USD" },
   { id: "Pro", precio: "2.500 USD" },
   { id: "VIP", precio: "5.000 USD" },
+  { id: "Exclusivo", precio: "+5.000 USD" },
 ];
 
-const OBJETIVOS = ["Mantener", "Alquilar", "Vender"];
-
-const MUNICIPIOS = ["Baruta", "Chacao", "El Hatillo", "Libertador", "Sucre", "Otro"];
+const OBJETIVOS = ["Mantener", "Alquilar", "Vender", "No sé todavía"];
 
 const inputClass =
-  "w-full rounded-xl border border-line bg-paper px-3 py-3 text-base text-ink outline-none focus:border-ink";
+  "w-full rounded-xl border border-line bg-paper px-3 py-3 text-base text-ink outline-none placeholder:text-[#b7b1a8] focus:border-ink";
+
+function Celebration() {
+  const ref = useRef<HTMLCanvasElement>(null);
+  useEffect(() => {
+    const canvas = ref.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    const colors = ["#f5c518", "#2457c5", "#c81e1e", "#85bb65", "#8c3a2f", "#fffdf9"];
+    type Bit = { x: number; y: number; vx: number; vy: number; g: number; life: number; color: string; w: number; h: number; rot: number; vr: number; spark: boolean };
+    const bits: Bit[] = [];
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    resize();
+    for (let i = 0; i < 160; i++) {
+      bits.push({
+        x: Math.random() * window.innerWidth,
+        y: -20 - Math.random() * window.innerHeight * 0.6,
+        vx: (Math.random() - 0.5) * 2.2,
+        vy: 2 + Math.random() * 3.2,
+        g: 0.015,
+        life: 1,
+        color: colors[i % colors.length] ?? "#fffdf9",
+        w: 6 + Math.random() * 7,
+        h: 9 + Math.random() * 8,
+        rot: Math.random() * 6,
+        vr: (Math.random() - 0.5) * 0.25,
+        spark: false,
+      });
+    }
+    const burst = (x: number, y: number) => {
+      for (let i = 0; i < 80; i++) {
+        const angle = (Math.PI * 2 * i) / 80;
+        const speed = 1.6 + Math.random() * 4.2;
+        bits.push({
+          x, y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          g: 0.04,
+          life: 1,
+          color: colors[i % colors.length] ?? "#f5c518",
+          w: 3, h: 3, rot: 0, vr: 0, spark: true,
+        });
+      }
+    };
+    const spots = [0.22, 0.72, 0.48, 0.8, 0.3];
+    let frame = 0;
+    let raf = 0;
+    const tick = () => {
+      frame += 1;
+      if (frame === 6 || frame === 36 || frame === 68 || frame === 100 || frame === 132) {
+        const spot = spots[Math.floor(frame / 30)] ?? 0.5;
+        burst(canvas.width * spot, canvas.height * (0.22 + (frame % 5) * 0.06));
+      }
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (const bit of bits) {
+        bit.x += bit.vx;
+        bit.y += bit.vy;
+        bit.vy += bit.g;
+        bit.rot += bit.vr;
+        if (bit.spark) bit.life -= 0.014;
+        ctx.save();
+        ctx.globalAlpha = Math.max(bit.life, 0);
+        ctx.translate(bit.x, bit.y);
+        ctx.rotate(bit.rot);
+        ctx.fillStyle = bit.color;
+        ctx.fillRect(-bit.w / 2, -bit.h / 2, bit.w, bit.h);
+        ctx.restore();
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    const stop = window.setTimeout(() => cancelAnimationFrame(raf), 5600);
+    window.addEventListener("resize", resize);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.clearTimeout(stop);
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
+  return <canvas ref={ref} className="pointer-events-none fixed inset-0 z-[80]" aria-hidden />;
+}
 
 function Choice({
   name,
@@ -419,7 +512,7 @@ function Choice({
     <label
       className={`cursor-pointer rounded-xl border px-2 py-2.5 text-center text-sm ${on ? "border-ink bg-ink text-cream" : "border-line bg-paper text-ink"}`}
     >
-      <input className="sr-only" type="radio" name={name} value={value} checked={on} required onChange={() => onChange(value)} />
+      <input className="sr-only" type="radio" name={name} value={value} checked={on} onChange={() => onChange(value)} />
       {children}
     </label>
   );
