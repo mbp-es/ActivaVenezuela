@@ -1,6 +1,6 @@
 import { i as __toESM } from "../_runtime.mjs";
 import { K as require_react, b as require_jsx_runtime } from "../_libs/@tanstack/react-router+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-DBTieUHL.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-D_NMHMjM.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 /** División municipal de Venezuela. Fuente: Wikipedia «Municipalities of Venezuela», 335 municipios, consultada el 18 nov 2026. */
@@ -665,7 +665,7 @@ function Home() {
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 							className: "mx-auto mt-4 max-w-2xl text-center font-sub text-lg text-muted",
-							children: "Visita de un Ing. Civil visado por el CIV. El informe cubre estructura, estado por ambiente y presupuesto para alquilar, vender o mantener."
+							children: "Visita de un Ing. Civil visado por el CIV. El informe cubre la estructura y el estado del inmueble. El presupuesto de obra entra en el Pro y en el VIP."
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 							className: "mt-14 grid items-start gap-6 lg:grid-cols-3",
@@ -686,7 +686,7 @@ function Home() {
 										}),
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 											className: "mt-4 font-sub text-muted",
-											children: "Para saber cómo está y cuánto cuesta cada camino."
+											children: "Cómo está, y cuánto sale mantener, alquilar o vender sin hacer obra."
 										}),
 										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("ul", {
 											className: "mt-6 space-y-3 border-t border-line pt-6 font-sub text-[17px] leading-snug",
@@ -694,9 +694,10 @@ function Home() {
 												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Visita presencial y mediciones" }),
 												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Informe estructural post-sismo" }),
 												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Estado operativo, ambiente por ambiente, con fotos y video" }),
-												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Presupuesto para alquilar, vender y mantener" }),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Presupuesto para mantener, alquilar y vender, tal como está" }),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "El presupuesto de obra no está incluido" }),
 												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Inventario de lo que hay" }),
-												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Checklist de documentos para alquilar o vender" })
+												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Limpieza superficial del inmueble y superficies, hasta 150 m²" })
 											]
 										})
 									]
@@ -717,16 +718,18 @@ function Home() {
 										}),
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 											className: "mt-4 font-sub text-muted",
-											children: "El informe, y el inmueble vacío y limpio."
+											children: "Revisamos cada ambiente y te mostramos la obra, con precio."
 										}),
 										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("ul", {
 											className: "mt-6 space-y-3 border-t border-line pt-6 font-sub text-[17px] leading-snug",
 											children: [
-												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Todo el básico" }),
-												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Retiro y disposición de muebles dañados" }),
-												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Mudanza de lo que quieras conservar" }),
-												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Limpieza profunda" }),
-												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Listo para enseñar, sin obra todavía" })
+												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Todo lo del básico" }),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Revisión exhaustiva de luces, grifos, equipos y muebles" }),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Checklist de documentos necesarios para alquilar o vender" }),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Limpieza a fondo, hasta 150 m²" }),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Una propuesta de render modelo y su presupuesto de obra" }),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "La posible revalorización después de las obras" }),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Seis meses de gestión, desde que el inmueble queda alquilado. Gastos e incidencias van aparte" })
 											]
 										})
 									]
@@ -747,16 +750,19 @@ function Home() {
 										}),
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 											className: "mt-4 font-sub text-cream/70",
-											children: "Para presentarlo como si ya estuviera en el mercado."
+											children: "Los papeles de los servicios, tres opciones de obra y un año de gestión."
 										}),
 										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("ul", {
 											className: "mt-6 space-y-3 border-t border-cream/15 pt-6 font-sub text-[17px] leading-snug text-cream/90",
 											children: [
-												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Todo el pro" }),
-												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Propuesta de diseñador de interiores" }),
-												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Staging del inmueble" }),
-												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Sesión de fotografías para mostrarlo" }),
-												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Material listo para inquilino o comprador" })
+												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Todo lo del pro" }),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Consulta en Corpoelec" }),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Consulta en Hidrocapital" }),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Consulta en PDVSA Gas" }),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Solicitud de certificación de deuda del condominio" }),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Certificación de deuda de la alcaldía" }),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Tres renders, con hasta tres cambios y sus presupuestos de obra" }),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Un año de gestión, desde que el inmueble queda alquilado. Gastos e incidencias van aparte" })
 											]
 										})
 									]
@@ -793,11 +799,15 @@ function Home() {
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 						className: "mx-auto mt-12 grid max-w-4xl gap-x-16 gap-y-8 sm:grid-cols-2",
 						children: [
-							["Pintura", "General o por ambiente, según el camino."],
+							["Pintura", "General, por ambiente, o un retoque blanco."],
+							["Bombillos", "Cambio de los principales."],
 							["Reparaciones", "Tomas, sifones, filtraciones y tablero."],
 							["Humedad", "Tratamiento de manchas y filtraciones."],
 							["Cocina y baños", "Muebles y sanitarios que no sirven."],
 							["Muebles", "Retiro, mudanza o lo que quieras guardar."],
+							["Limpieza", "A fondo por encima de 150 m², o si no viene en el diagnóstico."],
+							["Staging", "Para presentarlo a un inquilino o comprador."],
+							["Fotografías", "Sesión profesional del inmueble listo."],
 							["Llaves", "Custodia y acceso, sin que viajes."]
 						].map(([title, text]) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 							className: "border-t border-ink/20 pt-4",
@@ -860,6 +870,38 @@ function Home() {
 							children: "En los tres: incidencias, mantenimiento y reportes."
 						})
 					]
+				})
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
+				className: "bg-paper py-24",
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "mx-auto max-w-3xl px-5",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+						className: "text-center font-display text-4xl tracking-tight sm:text-5xl",
+						children: "Antes de decidir"
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+						className: "mt-12 border-t border-line",
+						children: FAQ.map((item) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("details", {
+							className: "group border-b border-line py-5",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("summary", {
+								className: "flex cursor-pointer list-none items-start justify-between gap-6 font-display text-2xl tracking-tight [&::-webkit-details-marker]:hidden",
+								children: [
+									item.q,
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+										className: "mt-1 shrink-0 text-brick group-open:hidden",
+										children: "+"
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+										className: "mt-1 hidden shrink-0 text-brick group-open:inline",
+										children: "–"
+									})
+								]
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+								className: "mt-3 max-w-2xl font-sub text-lg text-muted",
+								children: item.a
+							})]
+						}, item.q))
+					})]
 				})
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
@@ -1065,6 +1107,52 @@ function Home() {
 		]
 	});
 }
+var FAQ = [
+	{
+		q: "¿El básico incluye el presupuesto de obra?",
+		a: "No. Sales con el diagnóstico y con lo que costaría mantener, alquilar o vender tal como está. El presupuesto de mejoras se pide aparte."
+	},
+	{
+		q: "¿El Pro y el VIP incluyen la obra?",
+		a: "No. Incluyen el presupuesto para ejecutarla. La obra se hace en la activación y se paga aparte."
+	},
+	{
+		q: "¿Cuándo empiezan los meses de gestión?",
+		a: "Cuando el inmueble queda alquilado. El Pro trae seis meses y el VIP un año. Gastos e incidencias van aparte."
+	},
+	{
+		q: "¿Qué no entra en el diagnóstico?",
+		a: "Mudanza, retiro de muebles, pintura, staging y la sesión profesional de fotos. Eso es activación. El Básico incluye una limpieza superficial y el Pro una limpieza a fondo, ambas hasta 150 m²."
+	},
+	{
+		q: "¿Qué hago si ocupan mi vivienda?",
+		a: "El contrato y la elección del inquilino son la primera barrera. Si alguien entra sin contrato, o no entrega el inmueble, lo documentamos, te avisamos y se sigue la vía legal. No prometemos un plazo de desalojo. Eso no depende solo de nosotros."
+	},
+	{
+		q: "¿Qué pasa si dejan de pagar?",
+		a: "Cobramos nosotros. Al primer atraso te avisamos y reclamamos según el contrato. No te adelantamos el alquiler si el inquilino no paga."
+	},
+	{
+		q: "¿Quién responde por los daños?",
+		a: "Hay inventario al entrar y al salir, con fotos. El depósito cubre lo que no es desgaste normal. Lo que exceda se reclama al inquilino. No somos un seguro."
+	},
+	{
+		q: "¿Dónde dejo los muebles si no los quiero en la vivienda?",
+		a: "Los retiramos, los guardamos o botamos lo dañado. El almacén se cotiza aparte, según el volumen y el tiempo. No tiene un precio fijo."
+	},
+	{
+		q: "¿Quién hace la mudanza?",
+		a: "La coordinamos nosotros. No entra en el diagnóstico. Entra cuando se activa el inmueble."
+	},
+	{
+		q: "¿Qué documentos necesito para alquilar?",
+		a: "Documento de propiedad, tu cédula o pasaporte y RIF. Si firma otra persona, un poder. Del edificio, lo que pida el condominio. Del inquilino, cédula y el contrato."
+	},
+	{
+		q: "¿Qué documentos necesito para vender?",
+		a: "Documento de propiedad, tu cédula y las solvencias que pidan el registro y el condominio. Si estás fuera, un poder. La lista exacta sale al ver el caso."
+	}
+];
 var TIPOS = [
 	{
 		id: "Básico",

@@ -180,47 +180,53 @@ function Home() {
           <p className="text-center text-sm font-semibold tracking-[0.18em] text-brick uppercase">1 · Diagnóstico</p>
           <h2 className="mt-3 text-center font-display text-4xl tracking-tight sm:text-5xl">Tres formas de empezar</h2>
           <p className="mx-auto mt-4 max-w-2xl text-center font-sub text-lg text-muted">
-            Visita de un Ing. Civil visado por el CIV. El informe cubre estructura, estado por ambiente y presupuesto para alquilar, vender o mantener.
+            Visita de un Ing. Civil visado por el CIV. El informe cubre la estructura y el estado del inmueble. El presupuesto de obra entra en el Pro y en el VIP.
           </p>
 
           <div className="mt-14 grid items-start gap-6 lg:grid-cols-3">
             <article className="rounded-card border border-line bg-paper p-8">
               <h3 className="font-display text-3xl">Básico</h3>
               <p className="mt-4 font-display text-5xl tracking-tight">1.000 <span className="text-2xl text-muted">USD</span></p>
-              <p className="mt-4 font-sub text-muted">Para saber cómo está y cuánto cuesta cada camino.</p>
+              <p className="mt-4 font-sub text-muted">Cómo está, y cuánto sale mantener, alquilar o vender sin hacer obra.</p>
               <ul className="mt-6 space-y-3 border-t border-line pt-6 font-sub text-[17px] leading-snug">
                 <li>Visita presencial y mediciones</li>
                 <li>Informe estructural post-sismo</li>
                 <li>Estado operativo, ambiente por ambiente, con fotos y video</li>
-                <li>Presupuesto para alquilar, vender y mantener</li>
+                <li>Presupuesto para mantener, alquilar y vender, tal como está</li>
+                <li>El presupuesto de obra no está incluido</li>
                 <li>Inventario de lo que hay</li>
-                <li>Checklist de documentos para alquilar o vender</li>
+                <li>Limpieza superficial del inmueble y superficies, hasta 150 m²</li>
               </ul>
             </article>
 
             <article className="rounded-card border-2 border-ink bg-paper p-8">
               <h3 className="font-display text-3xl">Pro</h3>
               <p className="mt-4 font-display text-5xl tracking-tight">2.500 <span className="text-2xl text-muted">USD</span></p>
-              <p className="mt-4 font-sub text-muted">El informe, y el inmueble vacío y limpio.</p>
+              <p className="mt-4 font-sub text-muted">Revisamos cada ambiente y te mostramos la obra, con precio.</p>
               <ul className="mt-6 space-y-3 border-t border-line pt-6 font-sub text-[17px] leading-snug">
-                <li>Todo el básico</li>
-                <li>Retiro y disposición de muebles dañados</li>
-                <li>Mudanza de lo que quieras conservar</li>
-                <li>Limpieza profunda</li>
-                <li>Listo para enseñar, sin obra todavía</li>
+                <li>Todo lo del básico</li>
+                <li>Revisión exhaustiva de luces, grifos, equipos y muebles</li>
+                <li>Checklist de documentos necesarios para alquilar o vender</li>
+                <li>Limpieza a fondo, hasta 150 m²</li>
+                <li>Una propuesta de render modelo y su presupuesto de obra</li>
+                <li>La posible revalorización después de las obras</li>
+                <li>Seis meses de gestión, desde que el inmueble queda alquilado. Gastos e incidencias van aparte</li>
               </ul>
             </article>
 
             <article className="rounded-card bg-ink p-8 text-cream">
               <h3 className="font-display text-3xl">VIP</h3>
               <p className="mt-4 font-display text-5xl tracking-tight text-income">5.000 <span className="text-2xl text-cream/60">USD</span></p>
-              <p className="mt-4 font-sub text-cream/70">Para presentarlo como si ya estuviera en el mercado.</p>
+              <p className="mt-4 font-sub text-cream/70">Los papeles de los servicios, tres opciones de obra y un año de gestión.</p>
               <ul className="mt-6 space-y-3 border-t border-cream/15 pt-6 font-sub text-[17px] leading-snug text-cream/90">
-                <li>Todo el pro</li>
-                <li>Propuesta de diseñador de interiores</li>
-                <li>Staging del inmueble</li>
-                <li>Sesión de fotografías para mostrarlo</li>
-                <li>Material listo para inquilino o comprador</li>
+                <li>Todo lo del pro</li>
+                <li>Consulta en Corpoelec</li>
+                <li>Consulta en Hidrocapital</li>
+                <li>Consulta en PDVSA Gas</li>
+                <li>Solicitud de certificación de deuda del condominio</li>
+                <li>Certificación de deuda de la alcaldía</li>
+                <li>Tres renders, con hasta tres cambios y sus presupuestos de obra</li>
+                <li>Un año de gestión, desde que el inmueble queda alquilado. Gastos e incidencias van aparte</li>
               </ul>
             </article>
           </div>
@@ -241,11 +247,15 @@ function Home() {
         </p>
         <div className="mx-auto mt-12 grid max-w-4xl gap-x-16 gap-y-8 sm:grid-cols-2">
           {[
-            ["Pintura", "General o por ambiente, según el camino."],
+            ["Pintura", "General, por ambiente, o un retoque blanco."],
+            ["Bombillos", "Cambio de los principales."],
             ["Reparaciones", "Tomas, sifones, filtraciones y tablero."],
             ["Humedad", "Tratamiento de manchas y filtraciones."],
             ["Cocina y baños", "Muebles y sanitarios que no sirven."],
             ["Muebles", "Retiro, mudanza o lo que quieras guardar."],
+            ["Limpieza", "A fondo por encima de 150 m², o si no viene en el diagnóstico."],
+            ["Staging", "Para presentarlo a un inquilino o comprador."],
+            ["Fotografías", "Sesión profesional del inmueble listo."],
             ["Llaves", "Custodia y acceso, sin que viajes."],
           ].map(([title, text]) => (
             <div key={title} className="border-t border-ink/20 pt-4">
@@ -280,6 +290,24 @@ function Home() {
           <p className="mx-auto mt-12 max-w-2xl text-center font-sub text-muted">
             En los tres: incidencias, mantenimiento y reportes.
           </p>
+        </div>
+      </section>
+
+      <section className="bg-paper py-24">
+        <div className="mx-auto max-w-3xl px-5">
+          <h2 className="text-center font-display text-4xl tracking-tight sm:text-5xl">Antes de decidir</h2>
+          <div className="mt-12 border-t border-line">
+            {FAQ.map((item) => (
+              <details key={item.q} className="group border-b border-line py-5">
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-6 font-display text-2xl tracking-tight [&::-webkit-details-marker]:hidden">
+                  {item.q}
+                  <span className="mt-1 shrink-0 text-brick group-open:hidden">+</span>
+                  <span className="mt-1 hidden shrink-0 text-brick group-open:inline">–</span>
+                </summary>
+                <p className="mt-3 max-w-2xl font-sub text-lg text-muted">{item.a}</p>
+              </details>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -395,6 +423,53 @@ function Home() {
     </div>
   );
 }
+
+const FAQ = [
+  {
+    q: "¿El básico incluye el presupuesto de obra?",
+    a: "No. Sales con el diagnóstico y con lo que costaría mantener, alquilar o vender tal como está. El presupuesto de mejoras se pide aparte.",
+  },
+  {
+    q: "¿El Pro y el VIP incluyen la obra?",
+    a: "No. Incluyen el presupuesto para ejecutarla. La obra se hace en la activación y se paga aparte.",
+  },
+  {
+    q: "¿Cuándo empiezan los meses de gestión?",
+    a: "Cuando el inmueble queda alquilado. El Pro trae seis meses y el VIP un año. Gastos e incidencias van aparte.",
+  },
+  {
+    q: "¿Qué no entra en el diagnóstico?",
+    a: "Mudanza, retiro de muebles, pintura, staging y la sesión profesional de fotos. Eso es activación. El Básico incluye una limpieza superficial y el Pro una limpieza a fondo, ambas hasta 150 m².",
+  },
+  {
+    q: "¿Qué hago si ocupan mi vivienda?",
+    a: "El contrato y la elección del inquilino son la primera barrera. Si alguien entra sin contrato, o no entrega el inmueble, lo documentamos, te avisamos y se sigue la vía legal. No prometemos un plazo de desalojo. Eso no depende solo de nosotros.",
+  },
+  {
+    q: "¿Qué pasa si dejan de pagar?",
+    a: "Cobramos nosotros. Al primer atraso te avisamos y reclamamos según el contrato. No te adelantamos el alquiler si el inquilino no paga.",
+  },
+  {
+    q: "¿Quién responde por los daños?",
+    a: "Hay inventario al entrar y al salir, con fotos. El depósito cubre lo que no es desgaste normal. Lo que exceda se reclama al inquilino. No somos un seguro.",
+  },
+  {
+    q: "¿Dónde dejo los muebles si no los quiero en la vivienda?",
+    a: "Los retiramos, los guardamos o botamos lo dañado. El almacén se cotiza aparte, según el volumen y el tiempo. No tiene un precio fijo.",
+  },
+  {
+    q: "¿Quién hace la mudanza?",
+    a: "La coordinamos nosotros. No entra en el diagnóstico. Entra cuando se activa el inmueble.",
+  },
+  {
+    q: "¿Qué documentos necesito para alquilar?",
+    a: "Documento de propiedad, tu cédula o pasaporte y RIF. Si firma otra persona, un poder. Del edificio, lo que pida el condominio. Del inquilino, cédula y el contrato.",
+  },
+  {
+    q: "¿Qué documentos necesito para vender?",
+    a: "Documento de propiedad, tu cédula y las solvencias que pidan el registro y el condominio. Si estás fuera, un poder. La lista exacta sale al ver el caso.",
+  },
+];
 
 const TIPOS = [
   { id: "Básico", precio: "1.000 USD" },
