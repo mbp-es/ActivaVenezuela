@@ -1,6 +1,6 @@
 import { i as __toESM } from "../_runtime.mjs";
 import { K as require_react, b as require_jsx_runtime } from "../_libs/@tanstack/react-router+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-BGxBxgw3.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-DxQRczLb.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 /** División municipal de Venezuela. Fuente: Wikipedia «Municipalities of Venezuela», 335 municipios, consultada el 18 nov 2026. */
@@ -798,10 +798,14 @@ function Home() {
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 						className: "mx-auto mt-12 grid max-w-4xl gap-x-16 gap-y-8 sm:grid-cols-2",
 						children: [
-							["Reparaciones", "Tomas, sifones, tablero, filtraciones y humedad."],
+							["Reparaciones", "Filtraciones, humedad y tablero."],
+							["Tuberías", "Agua, desagües, sifones y llaves de paso."],
 							["Iluminación", "De la instalación a las lámparas y los bombillos."],
+							["Acabados", "Revestimientos y lo que se ve al entrar."],
+							["Suelos", "Reparación o reemplazo del piso y los zócalos."],
 							["Pintura", "General, por ambiente, o un retoque blanco."],
-							["Cocina y baños", "Muebles y sanitarios que no sirven."],
+							["Cocina", "Muebles, mesón y los equipos que no sirven."],
+							["Baños", "Sanitarios, grifería y revestimiento."],
 							["Equipos y muebles", "Reemplazo de los que no sirven."],
 							["Mudanza", "Retiro de lo que no se queda y traslado de lo que quieres conservar."],
 							["Almacenamiento", "Guardamos lo que no va en la vivienda. Se cotiza según volumen y tiempo."],
