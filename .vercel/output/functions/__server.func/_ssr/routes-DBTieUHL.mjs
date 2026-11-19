@@ -1,6 +1,6 @@
 import { i as __toESM } from "../_runtime.mjs";
 import { K as require_react, b as require_jsx_runtime } from "../_libs/@tanstack/react-router+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-Dd-JC20O.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-DBTieUHL.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 /** División municipal de Venezuela. Fuente: Wikipedia «Municipalities of Venezuela», 335 municipios, consultada el 18 nov 2026. */
@@ -395,15 +395,16 @@ var EMPTY = {
 	estado: "",
 	municipio: "",
 	direccion: "",
-	comentarios: "",
-	agenda: false
+	comentarios: ""
 };
 function Home() {
 	const [open, setOpen] = (0, import_react.useState)(false);
 	const [toast, setToast] = (0, import_react.useState)(false);
+	const [error, setError] = (0, import_react.useState)("");
 	const [form, setForm] = (0, import_react.useState)(EMPTY);
 	function openForm() {
 		setOpen(true);
+		setError("");
 	}
 	function update(key, value) {
 		setForm((prev) => ({
@@ -414,23 +415,30 @@ function Home() {
 	}
 	function submit(event) {
 		event.preventDefault();
-		const w = window;
-		if (form.nombre.trim() && form.correo.trim()) {
-			w.dataLayer = w.dataLayer || [];
-			w.dataLayer.push({
-				event: "generar_lead",
-				tipo: form.tipo,
-				objetivo: form.objetivo,
-				estado: form.estado,
-				municipio: form.municipio
-			});
-			w.fbq?.("track", "Lead");
+		if (!form.nombre.trim() || !form.whatsapp.trim() || !form.correo.trim() || !form.tipo || !form.objetivo || !form.estado || !form.municipio || !form.direccion.trim()) {
+			setError("Completa nombre, WhatsApp, correo, tipo, objetivo, estado, municipio y dirección.");
+			return;
 		}
+		if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.correo.trim())) {
+			setError("El correo no se ve válido.");
+			return;
+		}
+		const w = window;
+		w.dataLayer = w.dataLayer || [];
+		w.dataLayer.push({
+			event: "generar_lead",
+			tipo: form.tipo,
+			objetivo: form.objetivo,
+			estado: form.estado,
+			municipio: form.municipio
+		});
+		w.fbq?.("track", "Lead");
 		const prev = JSON.parse(localStorage.getItem("va-diagnosticos") || "[]");
 		localStorage.setItem("va-diagnosticos", JSON.stringify([{
 			...form,
 			at: (/* @__PURE__ */ new Date()).toISOString()
 		}, ...prev].slice(0, 20)));
+		setError("");
 		setToast(true);
 	}
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -879,34 +887,36 @@ function Home() {
 			}),
 			open ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 				className: "fixed inset-0 z-50 flex items-end justify-center bg-ink/55 p-0 sm:items-center sm:p-6",
+				onClick: () => setOpen(false),
 				children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					role: "dialog",
-					"aria-modal": "true",
-					"aria-labelledby": "diag-title",
-					className: "relative max-h-[92vh] w-full max-w-lg overflow-y-auto rounded-t-3xl bg-cream p-6 pt-14 shadow-2xl sm:rounded-3xl",
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-							type: "button",
-							onClick: () => setOpen(false),
-							"aria-label": "Cerrar",
-							className: "absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full text-2xl leading-none text-ink hover:bg-paper",
-							children: "×"
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
+					className: "relative w-full max-w-lg",
+					onClick: (event) => event.stopPropagation(),
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+						type: "button",
+						onClick: () => setOpen(false),
+						"aria-label": "Cerrar",
+						className: "absolute -top-3 right-3 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-line bg-cream text-xl leading-none text-ink shadow-lg sm:-right-3",
+						children: "×"
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						role: "dialog",
+						"aria-modal": "true",
+						"aria-labelledby": "diag-title",
+						className: "max-h-[92vh] w-full overflow-y-auto rounded-t-3xl bg-cream p-6 shadow-2xl sm:rounded-3xl",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
 							id: "diag-title",
 							className: "mb-6 text-center font-display text-2xl tracking-tight",
 							children: ["Activa ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 								className: "text-brick",
 								children: "Venezuela"
 							})]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
 							onSubmit: submit,
 							className: "grid gap-3",
 							children: [
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Field, {
 									label: "Nombre completo *",
 									children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+										required: true,
 										autoComplete: "name",
 										value: form.nombre,
 										onChange: (e) => update("nombre", e.target.value),
@@ -917,6 +927,7 @@ function Home() {
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Field, {
 									label: "WhatsApp *",
 									children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+										required: true,
 										type: "tel",
 										inputMode: "tel",
 										autoComplete: "tel",
@@ -929,6 +940,7 @@ function Home() {
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Field, {
 									label: "Correo electrónico *",
 									children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+										required: true,
 										type: "email",
 										autoComplete: "email",
 										value: form.correo,
@@ -952,10 +964,10 @@ function Home() {
 											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 												className: "block font-semibold",
 												children: tipo.id
-											}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											}), tipo.precio ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 												className: "block text-xs opacity-80",
 												children: tipo.precio
-											})]
+											}) : null]
 										}, tipo.id))
 									})]
 								}),
@@ -978,6 +990,7 @@ function Home() {
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Field, {
 									label: "Estado *",
 									children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("select", {
+										required: true,
 										value: form.estado,
 										onChange: (e) => update("estado", e.target.value),
 										className: inputClass,
@@ -990,6 +1003,7 @@ function Home() {
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Field, {
 									label: "Municipio *",
 									children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("select", {
+										required: true,
 										value: form.municipio,
 										disabled: !form.estado,
 										onChange: (e) => update("municipio", e.target.value),
@@ -1003,6 +1017,7 @@ function Home() {
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Field, {
 									label: "Dirección *",
 									children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+										required: true,
 										autoComplete: "street-address",
 										value: form.direccion,
 										onChange: (e) => update("direccion", e.target.value),
@@ -1020,38 +1035,31 @@ function Home() {
 										className: inputClass
 									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 										className: "font-normal text-muted",
-										children: "Entre más información, mejor nos preparamos para resolver todas las dudas durante la llamada."
+										children: "Entre más información, mejor te confirmamos por WhatsApp."
 									})]
 								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-									type: "button",
-									onClick: () => {
-										setForm((prev) => ({
-											...prev,
-											agenda: true
-										}));
-									},
-									className: `rounded-xl border px-3 py-3 text-left text-sm font-semibold ${form.agenda ? "border-ink bg-ink text-cream" : "border-line bg-paper"}`,
-									children: "Agendar videoconferencia"
-								}),
+								error ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "text-sm text-brick",
+									children: error
+								}) : null,
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 									type: "submit",
 									className: "mt-1 rounded-full bg-brick py-3.5 font-semibold text-cream",
-									children: "Solicitar el diagnóstico"
+									children: "Enviar solicitud"
 								})
 							]
-						})
-					]
+						})]
+					})]
 				})
 			}) : null,
 			toast ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Celebration, {}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 				className: "fixed bottom-6 left-1/2 z-[90] w-[min(92vw,28rem)] -translate-x-1/2 rounded-2xl bg-ink px-5 py-4 text-center text-cream shadow-2xl",
 				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 					className: "font-display text-2xl",
-					children: "Tu diagnóstico fue solicitado."
+					children: "Recibimos tu solicitud."
 				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 					className: "mt-1 font-sub text-cream/80",
-					children: "Recibirás respuesta en las próximas 24 horas."
+					children: "Te escribimos por WhatsApp para confirmar o enviarte el pago. Después agendamos la visita."
 				})]
 			})] }) : null
 		]
@@ -1072,7 +1080,7 @@ var TIPOS = [
 	},
 	{
 		id: "Exclusivo",
-		precio: "+5.000 USD"
+		precio: ""
 	}
 ];
 var OBJETIVOS = [
@@ -1187,13 +1195,14 @@ function Celebration() {
 function Choice({ name, value, current, onChange, children }) {
 	const on = current === value;
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", {
-		className: `cursor-pointer rounded-xl border px-2 py-2.5 text-center text-sm ${on ? "border-ink bg-ink text-cream" : "border-line bg-paper text-ink"}`,
+		className: `flex h-full cursor-pointer flex-col items-center justify-center rounded-xl border px-2 py-2.5 text-center text-sm ${on ? "border-ink bg-ink text-cream" : "border-line bg-paper text-ink"}`,
 		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
 			className: "sr-only",
 			type: "radio",
 			name,
 			value,
 			checked: on,
+			required: true,
 			onChange: () => onChange(value)
 		}), children]
 	});

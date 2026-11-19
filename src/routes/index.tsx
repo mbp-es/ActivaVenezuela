@@ -14,7 +14,6 @@ type FormState = {
   municipio: string;
   direccion: string;
   comentarios: string;
-  agenda: boolean;
 };
 
 const EMPTY: FormState = {
@@ -27,18 +26,17 @@ const EMPTY: FormState = {
   municipio: "",
   direccion: "",
   comentarios: "",
-  agenda: false,
 };
-
-const CALENDAR_URL = "";
 
 function Home() {
   const [open, setOpen] = useState(false);
   const [toast, setToast] = useState(false);
+  const [error, setError] = useState("");
   const [form, setForm] = useState<FormState>(EMPTY);
 
   function openForm() {
     setOpen(true);
+    setError("");
   }
 
   function update(key: keyof FormState, value: string) {
@@ -47,14 +45,21 @@ function Home() {
 
   function submit(event: FormEvent) {
     event.preventDefault();
-    const w = window as Window & { dataLayer?: Record<string, unknown>[]; fbq?: (...args: unknown[]) => void };
-    if (form.nombre.trim() && form.correo.trim()) {
-      w.dataLayer = w.dataLayer || [];
-      w.dataLayer.push({ event: "generar_lead", tipo: form.tipo, objetivo: form.objetivo, estado: form.estado, municipio: form.municipio });
-      w.fbq?.("track", "Lead");
+    if (!form.nombre.trim() || !form.whatsapp.trim() || !form.correo.trim() || !form.tipo || !form.objetivo || !form.estado || !form.municipio || !form.direccion.trim()) {
+      setError("Completa nombre, WhatsApp, correo, tipo, objetivo, estado, municipio y dirección.");
+      return;
     }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.correo.trim())) {
+      setError("El correo no se ve válido.");
+      return;
+    }
+    const w = window as Window & { dataLayer?: Record<string, unknown>[]; fbq?: (...args: unknown[]) => void };
+    w.dataLayer = w.dataLayer || [];
+    w.dataLayer.push({ event: "generar_lead", tipo: form.tipo, objetivo: form.objetivo, estado: form.estado, municipio: form.municipio });
+    w.fbq?.("track", "Lead");
     const prev = JSON.parse(localStorage.getItem("va-diagnosticos") || "[]") as FormState[];
     localStorage.setItem("va-diagnosticos", JSON.stringify([{ ...form, at: new Date().toISOString() }, ...prev].slice(0, 20)));
+    setError("");
     setToast(true);
   }
 
@@ -295,34 +300,35 @@ function Home() {
       </footer>
 
       {open ? (
-        <div className="fixed inset-0 z-50 flex items-end justify-center bg-ink/55 p-0 sm:items-center sm:p-6">
-          <div
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="diag-title"
-            className="relative max-h-[92vh] w-full max-w-lg overflow-y-auto rounded-t-3xl bg-cream p-6 pt-14 shadow-2xl sm:rounded-3xl"
-          >
+        <div className="fixed inset-0 z-50 flex items-end justify-center bg-ink/55 p-0 sm:items-center sm:p-6" onClick={() => setOpen(false)}>
+          <div className="relative w-full max-w-lg" onClick={(event) => event.stopPropagation()}>
             <button
               type="button"
               onClick={() => setOpen(false)}
               aria-label="Cerrar"
-              className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full text-2xl leading-none text-ink hover:bg-paper"
+              className="absolute -top-3 right-3 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-line bg-cream text-xl leading-none text-ink shadow-lg sm:-right-3"
             >
               ×
             </button>
+            <div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="diag-title"
+              className="max-h-[92vh] w-full overflow-y-auto rounded-t-3xl bg-cream p-6 shadow-2xl sm:rounded-3xl"
+            >
             <h2 id="diag-title" className="mb-6 text-center font-display text-2xl tracking-tight">
               Activa <span className="text-brick">Venezuela</span>
             </h2>
 
             <form onSubmit={submit} className="grid gap-3">
                 <Field label="Nombre completo *">
-                  <input autoComplete="name" value={form.nombre} onChange={(e) => update("nombre", e.target.value)} placeholder="María Pérez" className={inputClass} />
+                  <input required autoComplete="name" value={form.nombre} onChange={(e) => update("nombre", e.target.value)} placeholder="María Pérez" className={inputClass} />
                 </Field>
                 <Field label="WhatsApp *">
-                  <input type="tel" inputMode="tel" autoComplete="tel" value={form.whatsapp} onChange={(e) => update("whatsapp", e.target.value)} placeholder="+58 412 000 0000" className={inputClass} />
+                  <input required type="tel" inputMode="tel" autoComplete="tel" value={form.whatsapp} onChange={(e) => update("whatsapp", e.target.value)} placeholder="+58 412 000 0000" className={inputClass} />
                 </Field>
                 <Field label="Correo electrónico *">
-                  <input type="email" autoComplete="email" value={form.correo} onChange={(e) => update("correo", e.target.value)} placeholder="maria@correo.com" className={inputClass} />
+                  <input required type="email" autoComplete="email" value={form.correo} onChange={(e) => update("correo", e.target.value)} placeholder="maria@correo.com" className={inputClass} />
                 </Field>
                 <fieldset className="grid gap-1.5">
                   <legend className="text-sm font-medium">Tipo de diagnóstico *</legend>
@@ -330,7 +336,7 @@ function Home() {
                     {TIPOS.map((tipo) => (
                       <Choice key={tipo.id} name="tipo" value={tipo.id} current={form.tipo} onChange={(value) => update("tipo", value)}>
                         <span className="block font-semibold">{tipo.id}</span>
-                        <span className="block text-xs opacity-80">{tipo.precio}</span>
+                        {tipo.precio ? <span className="block text-xs opacity-80">{tipo.precio}</span> : null}
                       </Choice>
                     ))}
                   </div>
@@ -346,7 +352,7 @@ function Home() {
                   </div>
                 </fieldset>
                 <Field label="Estado *">
-                  <select value={form.estado} onChange={(e) => update("estado", e.target.value)} className={inputClass}>
+                  <select required value={form.estado} onChange={(e) => update("estado", e.target.value)} className={inputClass}>
                     <option value="">Selecciona</option>
                     {ESTADOS.map((estado) => (
                       <option key={estado}>{estado}</option>
@@ -354,7 +360,7 @@ function Home() {
                   </select>
                 </Field>
                 <Field label="Municipio *">
-                  <select value={form.municipio} disabled={!form.estado} onChange={(e) => update("municipio", e.target.value)} className={inputClass}>
+                  <select required value={form.municipio} disabled={!form.estado} onChange={(e) => update("municipio", e.target.value)} className={inputClass}>
                     <option value="">{form.estado ? "Selecciona" : "Primero el estado"}</option>
                     {(MUNICIPIOS[form.estado] ?? []).map((municipio) => (
                       <option key={municipio}>{municipio}</option>
@@ -362,26 +368,18 @@ function Home() {
                   </select>
                 </Field>
                 <Field label="Dirección *">
-                  <input autoComplete="street-address" value={form.direccion} onChange={(e) => update("direccion", e.target.value)} placeholder="Urbanización, edificio, apartamento" className={inputClass} />
+                  <input required autoComplete="street-address" value={form.direccion} onChange={(e) => update("direccion", e.target.value)} placeholder="Urbanización, edificio, apartamento" className={inputClass} />
                 </Field>
                 <Field label="Comentarios">
                   <textarea value={form.comentarios} onChange={(e) => update("comentarios", e.target.value)} rows={4} placeholder="120 m², tiene jardín, 6 años sin mantenimiento" className={inputClass} />
-                  <span className="font-normal text-muted">Entre más información, mejor nos preparamos para resolver todas las dudas durante la llamada.</span>
+                  <span className="font-normal text-muted">Entre más información, mejor te confirmamos por WhatsApp.</span>
                 </Field>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setForm((prev) => ({ ...prev, agenda: true }));
-                    if (CALENDAR_URL) window.open(CALENDAR_URL, "_blank", "noopener,noreferrer");
-                  }}
-                  className={`rounded-xl border px-3 py-3 text-left text-sm font-semibold ${form.agenda ? "border-ink bg-ink text-cream" : "border-line bg-paper"}`}
-                >
-                  Agendar videoconferencia
-                </button>
+                {error ? <p className="text-sm text-brick">{error}</p> : null}
                 <button type="submit" className="mt-1 rounded-full bg-brick py-3.5 font-semibold text-cream">
-                  Solicitar el diagnóstico
+                  Enviar solicitud
                 </button>
               </form>
+            </div>
           </div>
         </div>
       ) : null}
@@ -389,8 +387,8 @@ function Home() {
         <>
           <Celebration />
           <div className="fixed bottom-6 left-1/2 z-[90] w-[min(92vw,28rem)] -translate-x-1/2 rounded-2xl bg-ink px-5 py-4 text-center text-cream shadow-2xl">
-            <p className="font-display text-2xl">Tu diagnóstico fue solicitado.</p>
-            <p className="mt-1 font-sub text-cream/80">Recibirás respuesta en las próximas 24 horas.</p>
+            <p className="font-display text-2xl">Recibimos tu solicitud.</p>
+            <p className="mt-1 font-sub text-cream/80">Te escribimos por WhatsApp para confirmar o enviarte el pago. Después agendamos la visita.</p>
           </div>
         </>
       ) : null}
@@ -402,7 +400,7 @@ const TIPOS = [
   { id: "Básico", precio: "1.000 USD" },
   { id: "Pro", precio: "2.500 USD" },
   { id: "VIP", precio: "5.000 USD" },
-  { id: "Exclusivo", precio: "+5.000 USD" },
+  { id: "Exclusivo", precio: "" },
 ];
 
 const OBJETIVOS = ["Mantener", "Alquilar", "Vender", "No sé todavía"];
@@ -510,9 +508,9 @@ function Choice({
   const on = current === value;
   return (
     <label
-      className={`cursor-pointer rounded-xl border px-2 py-2.5 text-center text-sm ${on ? "border-ink bg-ink text-cream" : "border-line bg-paper text-ink"}`}
+      className={`flex h-full cursor-pointer flex-col items-center justify-center rounded-xl border px-2 py-2.5 text-center text-sm ${on ? "border-ink bg-ink text-cream" : "border-line bg-paper text-ink"}`}
     >
-      <input className="sr-only" type="radio" name={name} value={value} checked={on} onChange={() => onChange(value)} />
+      <input className="sr-only" type="radio" name={name} value={value} checked={on} required onChange={() => onChange(value)} />
       {children}
     </label>
   );
