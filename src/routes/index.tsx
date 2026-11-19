@@ -246,13 +246,14 @@ function Home() {
         </p>
         <div className="mx-auto mt-12 grid max-w-4xl gap-x-16 gap-y-8 sm:grid-cols-2">
           {[
+            ["Reparaciones", "Tomas, sifones, tablero, filtraciones y humedad."],
+            ["Iluminación", "De la instalación a las lámparas y los bombillos."],
             ["Pintura", "General, por ambiente, o un retoque blanco."],
-            ["Bombillos", "Cambio de los principales."],
-            ["Reparaciones", "Tomas, sifones, filtraciones y tablero."],
-            ["Humedad", "Tratamiento de manchas y filtraciones."],
             ["Cocina y baños", "Muebles y sanitarios que no sirven."],
-            ["Muebles", "Retiro, mudanza o lo que quieras guardar."],
-            ["Limpieza", "A fondo por encima de 150 m², o si no viene en el diagnóstico."],
+            ["Equipos y muebles", "Reemplazo de los que no sirven."],
+            ["Mudanza", "Retiro de lo que no se queda y traslado de lo que quieres conservar."],
+            ["Almacenamiento", "Guardamos lo que no va en la vivienda. Se cotiza según volumen y tiempo."],
+            ["Limpieza", "Básica, a fondo, áreas exteriores y jardines."],
             ["Staging", "Para presentarlo a un inquilino o comprador."],
             ["Fotografías", "Sesión profesional del inmueble listo."],
             ["Llaves", "Custodia y acceso, sin que viajes."],
