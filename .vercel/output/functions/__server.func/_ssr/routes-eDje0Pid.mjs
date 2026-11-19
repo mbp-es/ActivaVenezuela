@@ -1,6 +1,6 @@
 import { i as __toESM } from "../_runtime.mjs";
 import { K as require_react, b as require_jsx_runtime } from "../_libs/@tanstack/react-router+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-D_NMHMjM.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-eDje0Pid.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 /** División municipal de Venezuela. Fuente: Wikipedia «Municipalities of Venezuela», 335 municipios, consultada el 18 nov 2026. */
@@ -728,7 +728,6 @@ function Home() {
 												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Checklist de documentos necesarios para alquilar o vender" }),
 												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Limpieza a fondo, hasta 150 m²" }),
 												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Una propuesta de render modelo y su presupuesto de obra" }),
-												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "La posible revalorización después de las obras" }),
 												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Seis meses de gestión, desde que el inmueble queda alquilado. Gastos e incidencias van aparte" })
 											]
 										})

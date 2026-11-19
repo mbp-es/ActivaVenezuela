@@ -209,7 +209,6 @@ function Home() {
                 <li>Checklist de documentos necesarios para alquilar o vender</li>
                 <li>Limpieza a fondo, hasta 150 m²</li>
                 <li>Una propuesta de render modelo y su presupuesto de obra</li>
-                <li>La posible revalorización después de las obras</li>
                 <li>Seis meses de gestión, desde que el inmueble queda alquilado. Gastos e incidencias van aparte</li>
               </ul>
             </article>
