@@ -188,16 +188,16 @@ function Home() {
   }
 
   return (
-<div style={css("width: 100%; max-width: 600px; margin: 0 auto; box-shadow: 0 0 0 1px #E6E0D4; background: #FBF8F2; color: #1A1714; font-family: Inter, system-ui, sans-serif; font-size: 16px; line-height: 1.5")}>
+<div className="av-root" style={css("width: 100%; max-width: 600px; margin: 0 auto; box-shadow: 0 0 0 1px #E6E0D4; background: #FBF8F2; color: #1A1714; font-family: Inter, system-ui, sans-serif; font-size: 16px; line-height: 1.5")}>
 
 <header style={css("display: flex; align-items: center; justify-content: center; padding: 14px 20px; background: #FBF8F2; border-bottom: 1px solid #E6E0D4")}>
 <p style={css("margin: 0; font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 600; letter-spacing: -0.01em")}>Activa <span style={css("color: #8C3A2F")}>Venezuela</span></p>
 </header>
 
-<section style={css("position: relative; height: 620px; overflow: hidden; color: #FBF8F2")}>
+<section className="av-hero" style={css("position: relative; height: 620px; overflow: hidden; color: #FBF8F2")}>
 <img src="/avila.jpg" alt="El Ávila sobre Caracas al atardecer" style={css("position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 30% center")} />
 <div style={css("position: absolute; inset: 0; background: rgba(22, 14, 12, 0.58)")}></div>
-<div style={css("position: relative; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; box-sizing: border-box; padding: 0 24px 32px; gap: 16px")}>
+<div className="av-hero-in" style={css("position: relative; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; box-sizing: border-box; padding: 0 24px 32px; gap: 16px")}>
 <p style={css("margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #F0C998")}>¿Tu inmueble está parado?</p>
 <h1 style={css("margin: 0; font-family: Fraunces, Georgia, serif; font-size: 46px; line-height: 1.02; font-weight: 600; letter-spacing: -0.02em")}>Pon tu inmueble en Venezuela a generar.</h1>
 <p style={css("margin: 0; font-size: 18px; line-height: 1.45; color: #EDE7DC")}>Falta de tiempo, o no saber por dónde empezar. Nos encargamos de todo.</p>
@@ -206,19 +206,19 @@ function Home() {
 </div>
 </section>
 
-<section style={css("display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: #5A2420; color: #FBF8F2")}>
+<section className="av-trust" style={css("display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: #5A2420; color: #FBF8F2")}>
 <div style={css("padding: 18px 8px; text-align: center; border-right: 1px solid #7A3A33")}><p style={css("margin: 0; font-family: Fraunces, Georgia, serif; font-size: 19px; font-weight: 600")}>CIV</p><p style={css("margin: 2px 0 0; font-size: 12px; line-height: 1.35; color: #D8CEC6")}>Ingeniero civil colegiado</p></div>
 <div style={css("padding: 18px 8px; text-align: center; border-right: 1px solid #7A3A33")}><p style={css("margin: 0; font-family: Fraunces, Georgia, serif; font-size: 19px; font-weight: 600")}>FUNVISIS</p><p style={css("margin: 2px 0 0; font-size: 12px; line-height: 1.35; color: #D8CEC6")}>Informe post sismo</p></div>
 <div style={css("padding: 18px 8px; text-align: center")}><p style={css("margin: 0; font-family: Fraunces, Georgia, serif; font-size: 19px; font-weight: 600")}>Ley 2026</p><p style={css("margin: 2px 0 0; font-size: 12px; line-height: 1.35; color: #D8CEC6")}>Contratos con la nueva ley</p></div>
 </section>
 
-<section style={css("padding: 56px 16px 48px; display: flex; flex-direction: column; gap: 18px")}>
+<section className="av-sec" style={css("padding: 56px 16px 48px; display: flex; flex-direction: column; gap: 18px")}>
 <div style={css("padding: 0 4px; display: flex; flex-direction: column; gap: 10px")}>
 <p style={css("margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #8C3A2F")}>Haz la cuenta</p>
 <h2 style={css("margin: 0; font-family: Fraunces, Georgia, serif; font-size: 34px; line-height: 1.06; font-weight: 600; letter-spacing: -0.015em")}>¿Cuánto te cuesta tenerlo parado?</h2>
 </div>
 
-<div style={css("border-radius: 28px; background: #1A1714; color: #FBF8F2; overflow: hidden")}>
+<div className="av-calc" style={css("border-radius: 28px; background: #1A1714; color: #FBF8F2; overflow: hidden")}>
 <div style={css("padding: 26px 22px 22px; display: flex; flex-direction: column; gap: 18px")}>
 <div>
 <p style={css("margin: 0; font-size: 15px; color: #D8CEC6")}>En {years} años te ha costado</p>
@@ -260,18 +260,18 @@ function Home() {
 </div>
 </section>
 
-<section style={css("padding: 56px 20px; background: #F1ECE2; display: flex; flex-direction: column; gap: 26px")}>
+<section className="av-sec" style={css("padding: 56px 20px; background: #F1ECE2; display: flex; flex-direction: column; gap: 26px")}>
 <div style={css("display: flex; flex-direction: column; gap: 10px")}>
 <p style={css("margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #8C3A2F")}>Cómo funciona</p>
 <h2 style={css("margin: 0; font-family: Fraunces, Georgia, serif; font-size: 32px; line-height: 1.08; font-weight: 600; letter-spacing: -0.015em")}>De gasto a ingreso, en 3 pasos</h2>
 </div>
-<div style={css("display: flex; flex-direction: column")}>
+<div className="av-steps3" style={css("display: flex; flex-direction: column")}>
 <div style={css("display: flex; gap: 16px")}>
-<div style={css("display: flex; flex-direction: column; align-items: center")}><div style={css("width: 40px; height: 40px; border-radius: 20px; background: #1A1714; color: #FBF8F2; display: flex; align-items: center; justify-content: center; font-family: Fraunces, Georgia, serif; font-size: 19px; font-weight: 600")}>1</div><div style={css("flex: 1; width: 2px; background: #CFC6B4")}></div></div>
+<div style={css("display: flex; flex-direction: column; align-items: center")}><div style={css("width: 40px; height: 40px; border-radius: 20px; background: #1A1714; color: #FBF8F2; display: flex; align-items: center; justify-content: center; font-family: Fraunces, Georgia, serif; font-size: 19px; font-weight: 600")}>1</div><div className="av-line" style={css("flex: 1; width: 2px; background: #CFC6B4")}></div></div>
 <div style={css("padding-bottom: 28px")}><h3 style={css("margin: 6px 0 6px; font-size: 19px; font-weight: 700")}>Diagnóstico</h3><p style={css("margin: 0; color: #5A4F48")}>Visitamos tu inmueble y te decimos cómo está, qué hacer y cuánto cuesta.</p></div>
 </div>
 <div style={css("display: flex; gap: 16px")}>
-<div style={css("display: flex; flex-direction: column; align-items: center")}><div style={css("width: 40px; height: 40px; border-radius: 20px; background: #1A1714; color: #FBF8F2; display: flex; align-items: center; justify-content: center; font-family: Fraunces, Georgia, serif; font-size: 19px; font-weight: 600")}>2</div><div style={css("flex: 1; width: 2px; background: #CFC6B4")}></div></div>
+<div style={css("display: flex; flex-direction: column; align-items: center")}><div style={css("width: 40px; height: 40px; border-radius: 20px; background: #1A1714; color: #FBF8F2; display: flex; align-items: center; justify-content: center; font-family: Fraunces, Georgia, serif; font-size: 19px; font-weight: 600")}>2</div><div className="av-line" style={css("flex: 1; width: 2px; background: #CFC6B4")}></div></div>
 <div style={css("padding-bottom: 28px")}><h3 style={css("margin: 6px 0 6px; font-size: 19px; font-weight: 700")}>Activación</h3><p style={css("margin: 0; color: #5A4F48")}>Hacemos las obras que necesita, a medida. Lo dejamos limpio, listo para alquilar o vender.</p></div>
 </div>
 <div style={css("display: flex; gap: 16px")}>
@@ -281,13 +281,13 @@ function Home() {
 </div>
 </section>
 
-<section style={css("padding: 56px 20px; display: flex; flex-direction: column; gap: 20px")}>
+<section className="av-sec" style={css("padding: 56px 20px; display: flex; flex-direction: column; gap: 20px")}>
 <div style={css("display: flex; flex-direction: column; gap: 10px")}>
 <p style={css("margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #8C3A2F")}>Quién visita tu inmueble</p>
 <h2 style={css("margin: 0; font-family: Fraunces, Georgia, serif; font-size: 32px; line-height: 1.08; font-weight: 600; letter-spacing: -0.015em")}>Personas con nombre y apellido</h2>
 <p style={css("margin: 0; color: #5A4F48")}>Sabes quién entra en tu casa y qué se va a hacer.</p>
 </div>
-<div style={css("display: flex; flex-direction: column; gap: 10px")}>
+<div className="av-grid3" style={css("display: flex; flex-direction: column; gap: 10px")}>
 <article style={css("display: flex; gap: 16px; align-items: center; padding: 16px; border-radius: 20px; background: #FFFFFF; border: 1px solid #E6E0D4")}>
 <img src="/team/daniel.jpg" alt="Daniel Monagas" style={css("flex: none; width: 72px; height: 72px; border-radius: 36px; object-fit: cover; background: #E6E0D4")} />
 <div><p style={css("margin: 0; font-weight: 700; font-size: 17px")}>Daniel Monagas</p><p style={css("margin: 0; font-size: 14px; color: #5A4F48")}>Ingeniero civil · CIV N.º <span aria-hidden="true" style={css("display: inline-block; filter: blur(4px); user-select: none; -webkit-user-select: none")}>321.566</span></p><p style={css("margin: 2px 0 0; font-size: 13px; color: #8C3A2F; font-weight: 600")}>Hace el diagnóstico y el informe</p></div>
@@ -303,7 +303,7 @@ function Home() {
 </div>
 </section>
 
-<section style={css("padding: 56px 20px; background: #F1ECE2; display: flex; flex-direction: column; gap: 18px")}>
+<section className="av-sec av-split" style={css("padding: 56px 20px; background: #F1ECE2; display: flex; flex-direction: column; gap: 18px")}>
 <div style={css("display: flex; flex-direction: column; gap: 10px")}>
 <p style={css("margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #8C3A2F")}>Qué recibes</p>
 <h2 style={css("margin: 0; font-family: Fraunces, Georgia, serif; font-size: 32px; line-height: 1.08; font-weight: 600; letter-spacing: -0.015em")}>Un informe para decidir con datos</h2>
@@ -329,13 +329,13 @@ function Home() {
 
 </section>
 
-<section style={css("padding: 56px 20px; background: #5A2420; color: #FBF8F2; display: flex; flex-direction: column; gap: 20px")}>
+<section className="av-sec" style={css("padding: 56px 20px; background: #5A2420; color: #FBF8F2; display: flex; flex-direction: column; gap: 20px")}>
 <div style={css("display: flex; flex-direction: column; gap: 10px")}>
 <p style={css("margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #F0C998")}>Nueva ley de alquileres</p>
 <h2 style={css("margin: 0; font-family: Fraunces, Georgia, serif; font-size: 32px; line-height: 1.08; font-weight: 600; letter-spacing: -0.015em")}>Alquilar vuelve a tener reglas claras</h2>
 <p style={css("margin: 0; color: #EBD9D3")}>Hacemos tu contrato con la ley de agosto de 2026. Esto es lo que te permite:</p>
 </div>
-<div style={css("display: flex; flex-direction: column; border-top: 1px solid #7A3A33")}>
+<div className="av-grid2" style={css("display: flex; flex-direction: column; border-top: 1px solid #7A3A33")}>
 <div style={css("display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid #7A3A33")}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F0C998" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={css("flex: none; margin-top: 2px")}><circle cx="12" cy="12" r="9"></circle><path d="M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.4 0-2.5.8-2.5 2s1.1 1.6 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5V8M12 16v1.5"></path></svg><div><p style={css("margin: 0; font-weight: 600")}>Canon en divisas</p><p style={css("margin: 2px 0 0; font-size: 14px; color: #EBD9D3")}>Pactado libremente entre las partes.</p></div></div>
 <div style={css("display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid #7A3A33")}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F0C998" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={css("flex: none; margin-top: 2px")}><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6l8-3z"></path><path d="M9 12l2 2 4-4"></path></svg><div><p style={css("margin: 0; font-weight: 600")}>Depósito o póliza de seguro</p><p style={css("margin: 2px 0 0; font-size: 14px; color: #EBD9D3")}>Depósito de hasta 3 meses de canon, o póliza.</p></div></div>
 <div style={css("display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid #7A3A33")}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F0C998" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={css("flex: none; margin-top: 2px")}><path d="M12 3v18M5 7h14M7 7l-3 7a3 3 0 0 0 6 0L7 7zM17 7l-3 7a3 3 0 0 0 6 0l-3-7z"></path></svg><div><p style={css("margin: 0; font-weight: 600")}>Disputas en tribunal de municipio</p><p style={css("margin: 2px 0 0; font-size: 14px; color: #EBD9D3")}>O en tribunal arbitral, con opción de conciliación o mediación antes.</p></div></div>
@@ -345,7 +345,7 @@ function Home() {
 <p style={css("margin: 0; font-size: 12px; line-height: 1.45; color: #D3B5AD")}>Ley del Régimen Especial de Arrendamiento de Inmuebles Destinados a Vivienda, G.O. N.º 7.065 Ext. Aplica a contratos firmados desde su publicación.</p>
 </section>
 
-<section style={css("padding: 56px 16px; display: flex; flex-direction: column; gap: 16px")}>
+<section className="av-sec av-mid" style={css("padding: 56px 16px; display: flex; flex-direction: column; gap: 16px")}>
 <div style={css("padding: 0 4px; display: flex; flex-direction: column; gap: 10px")}>
 <p style={css("margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #8C3A2F")}>Diagnóstico</p>
 <h2 style={css("margin: 0; font-family: Fraunces, Georgia, serif; font-size: 32px; line-height: 1.08; font-weight: 600; letter-spacing: -0.015em")}>Elige cómo empezar</h2>
@@ -370,7 +370,7 @@ function Home() {
 <p style={css("margin: 0 4px; font-size: 13px; color: #6B6458")}>Incluye desplazamiento. La gestión cuenta desde que el inmueble queda alquilado. Obra, gastos e incidencias van aparte.</p>
 </section>
 
-<section style={css("padding: 48px 20px; background: #F1ECE2; display: flex; flex-direction: column; gap: 22px")}>
+<section className="av-sec av-prices" style={css("padding: 48px 20px; background: #F1ECE2; display: flex; flex-direction: column; gap: 22px")}>
 <div style={css("display: flex; flex-direction: column; gap: 10px")}>
 <p style={css("margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #8C3A2F")}>Precios y pagos</p>
 <h2 style={css("margin: 0; font-family: Fraunces, Georgia, serif; font-size: 30px; line-height: 1.1; font-weight: 600; letter-spacing: -0.015em")}>Qué pagas y cuándo</h2>
@@ -391,7 +391,7 @@ function Home() {
 </div>
 </section>
 
-<section style={css("padding: 56px 16px; display: flex; flex-direction: column; gap: 16px")}>
+<section className="av-sec av-mid" style={css("padding: 56px 16px; display: flex; flex-direction: column; gap: 16px")}>
 <div style={css("padding: 0 4px; display: flex; flex-direction: column; gap: 10px")}>
 <p style={css("margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #8C3A2F")}>Lo que nos preguntan</p>
 <h2 style={css("margin: 0; font-family: Fraunces, Georgia, serif; font-size: 32px; line-height: 1.08; font-weight: 600; letter-spacing: -0.015em")}>Antes de decidir</h2>
@@ -409,20 +409,20 @@ function Home() {
 </div>
 </section>
 
-<section style={css("padding: 48px 20px 8px; background: #FBF8F2; display: flex; flex-direction: column; gap: 22px")}>
+<section className="av-sec" style={css("padding: 48px 20px 8px; background: #FBF8F2; display: flex; flex-direction: column; gap: 22px")}>
 <div style={css("display: flex; flex-direction: column; gap: 10px")}>
 <p style={css("margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #8C3A2F")}>Qué pasa cuando nos escribes</p>
 <h2 style={css("margin: 0; font-family: Fraunces, Georgia, serif; font-size: 30px; line-height: 1.1; font-weight: 600; letter-spacing: -0.015em")}>Del primer mensaje al informe</h2>
 </div>
-<div style={css("display: flex; flex-direction: column")}>
-<div style={css("display: flex; gap: 14px")}><div style={css("display: flex; flex-direction: column; align-items: center")}><div style={css("width: 32px; height: 32px; border-radius: 16px; border: 2px solid #8C3A2F; color: #8C3A2F; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; box-sizing: border-box")}>1</div><div style={css("flex: 1; width: 2px; background: #E0D9CB")}></div></div><div style={css("padding-bottom: 22px;")}><p style={css("margin: 4px 0 4px; font-weight: 700; font-size: 16px")}>Hablamos por WhatsApp</p><p style={css("margin: 0; font-size: 14px; color: #5A4F48")}>Resolvemos tus dudas sobre los planes, verificamos los datos del inmueble, cerramos el servicio que necesitas y reservamos al equipo.</p></div></div>
-<div style={css("display: flex; gap: 14px")}><div style={css("display: flex; flex-direction: column; align-items: center")}><div style={css("width: 32px; height: 32px; border-radius: 16px; border: 2px solid #8C3A2F; color: #8C3A2F; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; box-sizing: border-box")}>2</div><div style={css("flex: 1; width: 2px; background: #E0D9CB")}></div></div><div style={css("padding-bottom: 22px;")}><p style={css("margin: 4px 0 4px; font-weight: 700; font-size: 16px")}>Pagas y agendamos</p><p style={css("margin: 0; font-size: 14px; color: #5A4F48")}>Pagas el servicio y agendamos la fecha y la hora.</p></div></div>
-<div style={css("display: flex; gap: 14px")}><div style={css("display: flex; flex-direction: column; align-items: center")}><div style={css("width: 32px; height: 32px; border-radius: 16px; border: 2px solid #8C3A2F; color: #8C3A2F; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; box-sizing: border-box")}>3</div><div style={css("flex: 1; width: 2px; background: #E0D9CB")}></div></div><div style={css("padding-bottom: 22px;")}><p style={css("margin: 4px 0 4px; font-weight: 700; font-size: 16px")}>Ejecutamos el servicio</p><p style={css("margin: 0; font-size: 14px; color: #5A4F48")}>El encargado va con el personal a tu dirección, o a buscar las llaves, y ejecutamos el servicio.</p></div></div>
+<div className="av-steps4" style={css("display: flex; flex-direction: column")}>
+<div style={css("display: flex; gap: 14px")}><div style={css("display: flex; flex-direction: column; align-items: center")}><div style={css("width: 32px; height: 32px; border-radius: 16px; border: 2px solid #8C3A2F; color: #8C3A2F; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; box-sizing: border-box")}>1</div><div className="av-line" style={css("flex: 1; width: 2px; background: #E0D9CB")}></div></div><div style={css("padding-bottom: 22px;")}><p style={css("margin: 4px 0 4px; font-weight: 700; font-size: 16px")}>Hablamos por WhatsApp</p><p style={css("margin: 0; font-size: 14px; color: #5A4F48")}>Resolvemos tus dudas sobre los planes, verificamos los datos del inmueble, cerramos el servicio que necesitas y reservamos al equipo.</p></div></div>
+<div style={css("display: flex; gap: 14px")}><div style={css("display: flex; flex-direction: column; align-items: center")}><div style={css("width: 32px; height: 32px; border-radius: 16px; border: 2px solid #8C3A2F; color: #8C3A2F; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; box-sizing: border-box")}>2</div><div className="av-line" style={css("flex: 1; width: 2px; background: #E0D9CB")}></div></div><div style={css("padding-bottom: 22px;")}><p style={css("margin: 4px 0 4px; font-weight: 700; font-size: 16px")}>Pagas y agendamos</p><p style={css("margin: 0; font-size: 14px; color: #5A4F48")}>Pagas el servicio y agendamos la fecha y la hora.</p></div></div>
+<div style={css("display: flex; gap: 14px")}><div style={css("display: flex; flex-direction: column; align-items: center")}><div style={css("width: 32px; height: 32px; border-radius: 16px; border: 2px solid #8C3A2F; color: #8C3A2F; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; box-sizing: border-box")}>3</div><div className="av-line" style={css("flex: 1; width: 2px; background: #E0D9CB")}></div></div><div style={css("padding-bottom: 22px;")}><p style={css("margin: 4px 0 4px; font-weight: 700; font-size: 16px")}>Ejecutamos el servicio</p><p style={css("margin: 0; font-size: 14px; color: #5A4F48")}>El encargado va con el personal a tu dirección, o a buscar las llaves, y ejecutamos el servicio.</p></div></div>
 <div style={css("display: flex; gap: 14px")}><div style={css("display: flex; flex-direction: column; align-items: center")}><div style={css("width: 32px; height: 32px; border-radius: 16px; border: 2px solid #8C3A2F; color: #8C3A2F; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; box-sizing: border-box")}>4</div></div><div style={css("")}><p style={css("margin: 4px 0 4px; font-weight: 700; font-size: 16px")}>A los 7 días, tu plan</p><p style={css("margin: 0; font-size: 14px; color: #5A4F48")}>Recibes los informes, los presupuestos, el plan de acción y los próximos pasos.</p></div></div>
 </div>
 </section>
 
-<section id="contacto" style={css("padding: 56px 16px 48px; background: #FBF8F2; display: flex; flex-direction: column; gap: 14px")}>
+<section id="contacto" className="av-sec av-contact" style={css("padding: 56px 16px 48px; background: #FBF8F2; display: flex; flex-direction: column; gap: 14px")}>
 <div style={css("padding: 0 4px; display: flex; flex-direction: column; gap: 8px")}>
 <h2 style={css("margin: 0; font-family: Fraunces, Georgia, serif; font-size: 34px; line-height: 1.05; font-weight: 600; letter-spacing: -0.015em")}>Empieza hoy</h2>
 <p style={css("margin: 0; color: #5A4F48")}>Elige cómo prefieres hablar con nosotros.</p>
@@ -442,7 +442,7 @@ function Home() {
 <p style={css("margin: 0; text-align: center; font-size: 13px; color: #5A4F48")}>Te respondemos en menos de 24 h</p>
 </div>
 
-<div style={css("display: flex; align-items: center; gap: 12px; padding: 0 8px")}><div style={css("flex: 1; height: 1px; background: #DDD5C5")}></div><p style={css("margin: 0; font-size: 13px; color: #6B6458")}>o</p><div style={css("flex: 1; height: 1px; background: #DDD5C5")}></div></div>
+<div className="av-or" style={css("display: flex; align-items: center; gap: 12px; padding: 0 8px")}><div style={css("flex: 1; height: 1px; background: #DDD5C5")}></div><p style={css("margin: 0; font-size: 13px; color: #6B6458")}>o</p><div style={css("flex: 1; height: 1px; background: #DDD5C5")}></div></div>
 
 <form onSubmit={enviarInfo} style={css("padding: 20px; border-radius: 22px; background: #FFFFFF; border: 1px solid #E0D9CB; display: flex; flex-direction: column; gap: 12px")}>
 <div style={css("display: flex; flex-direction: column; gap: 2px")}>
@@ -458,7 +458,7 @@ function Home() {
 </form>
 </section>
 
-<section style={css("padding: 48px 20px; background: #FFFFFF; border-top: 1px solid #E6E0D4; display: flex; flex-direction: column; gap: 14px")}>
+<section className="av-sec av-mid" style={css("padding: 48px 20px; background: #FFFFFF; border-top: 1px solid #E6E0D4; display: flex; flex-direction: column; gap: 14px")}>
 <h2 style={css("margin: 0; font-family: Fraunces, Georgia, serif; font-size: 30px; line-height: 1.1; font-weight: 600; letter-spacing: -0.015em")}>Preguntas frecuentes</h2>
 <div style={css("display: flex; flex-direction: column; border-top: 1px solid #E0D9CB")}>
 <details style={css("border-bottom: 1px solid #E0D9CB")}><summary style={css("display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 18px 0; font-weight: 600; font-size: 16px; color: #1A1714")}>¿Cuándo empiezan los meses de gestión?<span className="faq-plus" style={css("flex: none; font-size: 22px; line-height: 1; color: #8C3A2F")}>+</span></summary><p style={css("margin: 0 0 18px; color: #5A4F48; font-size: 15px")}>Cuando el inmueble queda alquilado. El Pro trae seis meses y el VIP un año. Gastos e incidencias van aparte.</p></details>
@@ -477,7 +477,7 @@ function Home() {
 </div>
 </section>
 
-<footer style={css("padding: 32px 20px 40px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; color: #5A4F48")}>
+<footer className="av-sec av-foot" style={css("padding: 32px 20px 40px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; color: #5A4F48")}>
 <p style={css("margin: 0; font-family: Fraunces, Georgia, serif; font-size: 20px; font-weight: 600; color: #1A1714")}>Activa Venezuela</p>
 <p style={css("margin: 0")}>Grupo Zaquen, C.A. · RIF J-40003364-0</p>
 <p style={css("margin: 0")}><a href="mailto:info@activavenezuela.com">info@activavenezuela.com</a></p>

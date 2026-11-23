@@ -1,7 +1,7 @@
 import { i as __toESM } from "../_runtime.mjs";
 import { K as require_react, b as require_jsx_runtime } from "../_libs/@tanstack/react-router+[...].mjs";
 import { t as createClient } from "../_libs/supabase__supabase-js.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-Bv8YwiZF.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-CfDa-u2l.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var supabase = createClient("https://hgtbfknzcvwkbrzjfohl.supabase.co", "sb_publishable_9FdQR4cTMab6-tycQ-nRIw_bIKUmRJx");
@@ -255,6 +255,7 @@ function Home() {
 		setAcepta(false);
 	}
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+		className: "av-root",
 		style: css("width: 100%; max-width: 600px; margin: 0 auto; box-shadow: 0 0 0 1px #E6E0D4; background: #FBF8F2; color: #1A1714; font-family: Inter, system-ui, sans-serif; font-size: 16px; line-height: 1.5"),
 		children: [
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("header", {
@@ -268,6 +269,7 @@ function Home() {
 				})
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
+				className: "av-hero",
 				style: css("position: relative; height: 620px; overflow: hidden; color: #FBF8F2"),
 				children: [
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
@@ -277,6 +279,7 @@ function Home() {
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { style: css("position: absolute; inset: 0; background: rgba(22, 14, 12, 0.58)") }),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "av-hero-in",
 						style: css("position: relative; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; box-sizing: border-box; padding: 0 24px 32px; gap: 16px"),
 						children: [
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
@@ -319,6 +322,7 @@ function Home() {
 				]
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
+				className: "av-trust",
 				style: css("display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: #5A2420; color: #FBF8F2"),
 				children: [
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -354,6 +358,7 @@ function Home() {
 				]
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
+				className: "av-sec",
 				style: css("padding: 56px 16px 48px; display: flex; flex-direction: column; gap: 18px"),
 				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					style: css("padding: 0 4px; display: flex; flex-direction: column; gap: 10px"),
@@ -365,6 +370,7 @@ function Home() {
 						children: "¿Cuánto te cuesta tenerlo parado?"
 					})]
 				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "av-calc",
 					style: css("border-radius: 28px; background: #1A1714; color: #FBF8F2; overflow: hidden"),
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 						style: css("padding: 26px 22px 22px; display: flex; flex-direction: column; gap: 18px"),
@@ -538,6 +544,7 @@ function Home() {
 				})]
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
+				className: "av-sec",
 				style: css("padding: 56px 20px; background: #F1ECE2; display: flex; flex-direction: column; gap: 26px"),
 				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					style: css("display: flex; flex-direction: column; gap: 10px"),
@@ -549,6 +556,7 @@ function Home() {
 						children: "De gasto a ingreso, en 3 pasos"
 					})]
 				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "av-steps3",
 					style: css("display: flex; flex-direction: column"),
 					children: [
 						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -558,7 +566,10 @@ function Home() {
 								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 									style: css("width: 40px; height: 40px; border-radius: 20px; background: #1A1714; color: #FBF8F2; display: flex; align-items: center; justify-content: center; font-family: Fraunces, Georgia, serif; font-size: 19px; font-weight: 600"),
 									children: "1"
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { style: css("flex: 1; width: 2px; background: #CFC6B4") })]
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "av-line",
+									style: css("flex: 1; width: 2px; background: #CFC6B4")
+								})]
 							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 								style: css("padding-bottom: 28px"),
 								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
@@ -577,7 +588,10 @@ function Home() {
 								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 									style: css("width: 40px; height: 40px; border-radius: 20px; background: #1A1714; color: #FBF8F2; display: flex; align-items: center; justify-content: center; font-family: Fraunces, Georgia, serif; font-size: 19px; font-weight: 600"),
 									children: "2"
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { style: css("flex: 1; width: 2px; background: #CFC6B4") })]
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "av-line",
+									style: css("flex: 1; width: 2px; background: #CFC6B4")
+								})]
 							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 								style: css("padding-bottom: 28px"),
 								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
@@ -609,6 +623,7 @@ function Home() {
 				})]
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
+				className: "av-sec",
 				style: css("padding: 56px 20px; display: flex; flex-direction: column; gap: 20px"),
 				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					style: css("display: flex; flex-direction: column; gap: 10px"),
@@ -627,6 +642,7 @@ function Home() {
 						})
 					]
 				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "av-grid3",
 					style: css("display: flex; flex-direction: column; gap: 10px"),
 					children: [
 						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", {
@@ -700,6 +716,7 @@ function Home() {
 				})]
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
+				className: "av-sec av-split",
 				style: css("padding: 56px 20px; background: #F1ECE2; display: flex; flex-direction: column; gap: 18px"),
 				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					style: css("display: flex; flex-direction: column; gap: 10px"),
@@ -819,6 +836,7 @@ function Home() {
 				})]
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
+				className: "av-sec",
 				style: css("padding: 56px 20px; background: #5A2420; color: #FBF8F2; display: flex; flex-direction: column; gap: 20px"),
 				children: [
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -839,6 +857,7 @@ function Home() {
 						]
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "av-grid2",
 						style: css("display: flex; flex-direction: column; border-top: 1px solid #7A3A33"),
 						children: [
 							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -977,6 +996,7 @@ function Home() {
 				]
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
+				className: "av-sec av-mid",
 				style: css("padding: 56px 16px; display: flex; flex-direction: column; gap: 16px"),
 				children: [
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -1030,6 +1050,7 @@ function Home() {
 				]
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
+				className: "av-sec av-prices",
 				style: css("padding: 48px 20px; background: #F1ECE2; display: flex; flex-direction: column; gap: 22px"),
 				children: [
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -1212,6 +1233,7 @@ function Home() {
 				]
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
+				className: "av-sec av-mid",
 				style: css("padding: 56px 16px; display: flex; flex-direction: column; gap: 16px"),
 				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					style: css("padding: 0 4px; display: flex; flex-direction: column; gap: 10px"),
@@ -1246,6 +1268,7 @@ function Home() {
 				})]
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
+				className: "av-sec",
 				style: css("padding: 48px 20px 8px; background: #FBF8F2; display: flex; flex-direction: column; gap: 22px"),
 				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					style: css("display: flex; flex-direction: column; gap: 10px"),
@@ -1257,6 +1280,7 @@ function Home() {
 						children: "Del primer mensaje al informe"
 					})]
 				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "av-steps4",
 					style: css("display: flex; flex-direction: column"),
 					children: [
 						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -1266,7 +1290,10 @@ function Home() {
 								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 									style: css("width: 32px; height: 32px; border-radius: 16px; border: 2px solid #8C3A2F; color: #8C3A2F; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; box-sizing: border-box"),
 									children: "1"
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { style: css("flex: 1; width: 2px; background: #E0D9CB") })]
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "av-line",
+									style: css("flex: 1; width: 2px; background: #E0D9CB")
+								})]
 							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 								style: css("padding-bottom: 22px;"),
 								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
@@ -1285,7 +1312,10 @@ function Home() {
 								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 									style: css("width: 32px; height: 32px; border-radius: 16px; border: 2px solid #8C3A2F; color: #8C3A2F; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; box-sizing: border-box"),
 									children: "2"
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { style: css("flex: 1; width: 2px; background: #E0D9CB") })]
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "av-line",
+									style: css("flex: 1; width: 2px; background: #E0D9CB")
+								})]
 							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 								style: css("padding-bottom: 22px;"),
 								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
@@ -1304,7 +1334,10 @@ function Home() {
 								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 									style: css("width: 32px; height: 32px; border-radius: 16px; border: 2px solid #8C3A2F; color: #8C3A2F; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; box-sizing: border-box"),
 									children: "3"
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { style: css("flex: 1; width: 2px; background: #E0D9CB") })]
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "av-line",
+									style: css("flex: 1; width: 2px; background: #E0D9CB")
+								})]
 							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 								style: css("padding-bottom: 22px;"),
 								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
@@ -1340,6 +1373,7 @@ function Home() {
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
 				id: "contacto",
+				className: "av-sec av-contact",
 				style: css("padding: 56px 16px 48px; background: #FBF8F2; display: flex; flex-direction: column; gap: 14px"),
 				children: [
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -1403,6 +1437,7 @@ function Home() {
 						]
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "av-or",
 						style: css("display: flex; align-items: center; gap: 12px; padding: 0 8px"),
 						children: [
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { style: css("flex: 1; height: 1px; background: #DDD5C5") }),
@@ -1487,6 +1522,7 @@ function Home() {
 				]
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
+				className: "av-sec av-mid",
 				style: css("padding: 48px 20px; background: #FFFFFF; border-top: 1px solid #E6E0D4; display: flex; flex-direction: column; gap: 14px"),
 				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
 					style: css("margin: 0; font-family: Fraunces, Georgia, serif; font-size: 30px; line-height: 1.1; font-weight: 600; letter-spacing: -0.015em"),
@@ -1680,6 +1716,7 @@ function Home() {
 				})]
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("footer", {
+				className: "av-sec av-foot",
 				style: css("padding: 32px 20px 40px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; color: #5A4F48"),
 				children: [
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {

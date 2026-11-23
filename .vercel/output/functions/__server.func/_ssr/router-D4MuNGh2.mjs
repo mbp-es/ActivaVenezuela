@@ -4,7 +4,7 @@ import { t as TriangleAlert } from "../_libs/lucide-react.mjs";
 import { t as Analytics } from "../_libs/vercel__analytics.mjs";
 import { t as SpeedInsights } from "../_libs/vercel__speed-insights.mjs";
 import { a as union, i as string, n as number, r as object, t as literal } from "../_libs/zod.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-DyY8VUDk.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router-D4MuNGh2.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var FALLBACK_MESSAGE = "An unexpected error occurred. Try reloading the page.";
@@ -332,7 +332,7 @@ function PreviewHostBridge() {
 	}, [router]);
 	return null;
 }
-var styles_default = "/assets/styles-fGg4MqHH.css";
+var styles_default = "/assets/styles-mGhVUGns.css";
 var APP_NAME = "Activa Venezuela";
 var META_PIXEL_SCRIPT = `
   !function(f,b,e,v,n,t,s) {
@@ -450,7 +450,7 @@ var Route$1 = createRootRoute({
 		] })]
 	})
 });
-var $$splitComponentImporter = () => import("./routes-Bv8YwiZF.mjs");
+var $$splitComponentImporter = () => import("./routes-CfDa-u2l.mjs");
 var rootRouteChildren = { IndexRoute: createFileRoute("/")({ component: lazyRouteComponent($$splitComponentImporter, "component") }).update({
 	id: "/",
 	path: "/",
