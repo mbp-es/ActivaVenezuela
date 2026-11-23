@@ -449,10 +449,10 @@ function Home() {
       {toast ? (
         <>
           <Celebration />
-          <div className="fixed inset-0 z-[90] flex items-center justify-center bg-black/60 p-6">
-            <div className="w-full max-w-md rounded-3xl bg-ink px-8 py-10 text-center text-cream shadow-2xl ring-1 ring-cream/15">
-              <p className="font-display text-4xl leading-tight">Solicitud enviada.</p>
-              <p className="mt-4 font-sub text-xl text-cream/90">Recibimos tu solicitud de información del diagnóstico. Nos pondremos en contacto para organizar los detalles pertinentes, antes de 72 horas.</p>
+          <div className="fixed inset-0 z-[90] flex items-center justify-center bg-black/60 p-6" onClick={() => setToast(false)}>
+            <div className="w-full max-w-md rounded-3xl bg-ink px-8 py-10 text-center text-cream shadow-2xl ring-1 ring-cream/15" onClick={(event) => event.stopPropagation()}>
+              <p className="font-display text-4xl leading-tight">Solicitud recibida.</p>
+              <p className="mt-4 font-sub text-xl text-cream/90">Te escribiremos por WhatsApp en menos de 72 horas para coordinar tu diagnóstico.</p>
             </div>
           </div>
         </>
