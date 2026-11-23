@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { ESTADOS, MUNICIPIOS } from "@/lib/municipios";
+import { supabase } from "@/lib/supabase";
 
 export const Route = createFileRoute("/")({ component: Home });
 
@@ -33,6 +34,7 @@ function Home() {
   const [toast, setToast] = useState(false);
   const [error, setError] = useState("");
   const [form, setForm] = useState<FormState>(EMPTY);
+  const [sending, setSending] = useState(false);
 
   function openForm() {
     setOpen(true);
@@ -43,7 +45,7 @@ function Home() {
     setForm((prev) => ({ ...prev, [key]: value, ...(key === "estado" ? { municipio: "" } : {}) }));
   }
 
-  function submit(event: FormEvent) {
+  async function submit(event: FormEvent) {
     event.preventDefault();
     if (!form.nombre.trim() || !form.whatsapp.trim() || !form.correo.trim() || !form.tipo || !form.objetivo || !form.estado || !form.municipio || !form.direccion.trim()) {
       setError("Completa nombre, WhatsApp, correo, tipo, objetivo, estado, municipio y dirección.");
@@ -53,13 +55,28 @@ function Home() {
       setError("El correo no se ve válido.");
       return;
     }
+    setSending(true);
+    setError("");
+    const { error: insertError } = await supabase.from("solicitudes").insert({
+      nombre: form.nombre.trim(),
+      whatsapp: form.whatsapp.trim(),
+      correo: form.correo.trim(),
+      tipo: form.tipo,
+      objetivo: form.objetivo,
+      estado: form.estado,
+      municipio: form.municipio,
+      direccion: form.direccion.trim(),
+      comentarios: form.comentarios.trim() || null,
+    });
+    setSending(false);
+    if (insertError) {
+      setError("No pudimos guardar la solicitud. Inténtalo de nuevo.");
+      return;
+    }
     const w = window as Window & { dataLayer?: Record<string, unknown>[]; fbq?: (...args: unknown[]) => void };
     w.dataLayer = w.dataLayer || [];
     w.dataLayer.push({ event: "generar_lead", tipo: form.tipo, objetivo: form.objetivo, estado: form.estado, municipio: form.municipio });
     w.fbq?.("track", "Lead");
-    const prev = JSON.parse(localStorage.getItem("va-diagnosticos") || "[]") as FormState[];
-    localStorage.setItem("va-diagnosticos", JSON.stringify([{ ...form, at: new Date().toISOString() }, ...prev].slice(0, 20)));
-    setError("");
     setOpen(false);
     setToast(true);
   }
@@ -276,7 +293,7 @@ function Home() {
           <div className="mt-14 grid gap-10 md:grid-cols-3">
             <article>
               <h3 className="font-display text-3xl">Alquilar</h3>
-              <p className="mt-3 font-sub text-lg text-muted">Buscamos inquilino, firmamos el contrato y cobramos el canon.</p>
+              <p className="mt-3 font-sub text-lg text-muted">Buscamos inquilino, firmamos el contrato y cobramos el canon. Fotos profesionales, contrato, revisión del inquilino y búsqueda: 10% de una anualidad.</p>
             </article>
             <article>
               <h3 className="font-display text-3xl">Vender</h3>
@@ -288,7 +305,7 @@ function Home() {
             </article>
           </div>
           <p className="mx-auto mt-12 max-w-2xl text-center font-sub text-muted">
-            En los tres: incidencias, mantenimiento y reportes.
+            La gestión va del 8% al 15% de la mensualidad, según el inmueble, la divisa de cobro y el nivel de servicio. En el Pro y el VIP, los primeros meses van incluidos. En los tres: incidencias, mantenimiento y reportes.
           </p>
         </div>
       </section>
@@ -313,7 +330,7 @@ function Home() {
 
       <section className="px-5 py-24 text-center">
         <h2 className="font-display text-5xl tracking-tight">Pide tu diagnóstico</h2>
-        <p className="mx-auto mt-4 max-w-md font-sub text-lg text-muted">Te contactamos lo antes posible.</p>
+        <p className="mx-auto mt-4 max-w-md font-sub text-lg text-muted">Antes de 72 horas.</p>
         <button
           type="button"
           onClick={openForm}
@@ -403,8 +420,8 @@ function Home() {
                   <span className="font-normal text-muted">Entre más información, mejor te confirmamos por WhatsApp.</span>
                 </Field>
                 {error ? <p className="text-sm text-brick">{error}</p> : null}
-                <button type="submit" className="mt-1 rounded-full bg-brick py-3.5 font-semibold text-cream">
-                  Enviar solicitud
+                <button type="submit" disabled={sending} className="mt-1 rounded-full bg-brick py-3.5 font-semibold text-cream disabled:opacity-60">
+                  {sending ? "Enviando…" : "Enviar solicitud"}
                 </button>
               </form>
             </div>
@@ -416,8 +433,8 @@ function Home() {
           <Celebration />
           <div className="fixed inset-0 z-[90] flex items-center justify-center bg-black/60 p-6">
             <div className="w-full max-w-md rounded-3xl bg-ink px-8 py-10 text-center text-cream shadow-2xl ring-1 ring-cream/15">
-              <p className="font-display text-4xl leading-tight">Tu diagnóstico fue solicitado.</p>
-              <p className="mt-4 font-sub text-xl text-cream/90">Recibirás respuesta en las próximas 24 horas.</p>
+              <p className="font-display text-4xl leading-tight">Solicitud enviada.</p>
+              <p className="mt-4 font-sub text-xl text-cream/90">Recibimos tu solicitud de información del diagnóstico. Nos pondremos en contacto para organizar los detalles pertinentes, antes de 72 horas.</p>
             </div>
           </div>
         </>

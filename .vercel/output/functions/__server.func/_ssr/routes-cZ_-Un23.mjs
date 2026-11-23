@@ -1,6 +1,7 @@
 import { i as __toESM } from "../_runtime.mjs";
 import { K as require_react, b as require_jsx_runtime } from "../_libs/@tanstack/react-router+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-617GnIDH.js
+import { t as createClient } from "../_libs/supabase__supabase-js.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-cZ_-Un23.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 /** División municipal de Venezuela. Fuente: Wikipedia «Municipalities of Venezuela», 335 municipios, consultada el 18 nov 2026. */
@@ -386,6 +387,7 @@ var MUNICIPIOS = {
 	]
 };
 var ESTADOS = Object.keys(MUNICIPIOS);
+var supabase = createClient("https://hgtbfknzcvwkbrzjfohl.supabase.co", "sb_publishable_9FdQR4cTMab6-tycQ-nRIw_bIKUmRJx");
 var EMPTY = {
 	nombre: "",
 	whatsapp: "",
@@ -402,6 +404,7 @@ function Home() {
 	const [toast, setToast] = (0, import_react.useState)(false);
 	const [error, setError] = (0, import_react.useState)("");
 	const [form, setForm] = (0, import_react.useState)(EMPTY);
+	const [sending, setSending] = (0, import_react.useState)(false);
 	function openForm() {
 		setOpen(true);
 		setError("");
@@ -413,7 +416,7 @@ function Home() {
 			...key === "estado" ? { municipio: "" } : {}
 		}));
 	}
-	function submit(event) {
+	async function submit(event) {
 		event.preventDefault();
 		if (!form.nombre.trim() || !form.whatsapp.trim() || !form.correo.trim() || !form.tipo || !form.objetivo || !form.estado || !form.municipio || !form.direccion.trim()) {
 			setError("Completa nombre, WhatsApp, correo, tipo, objetivo, estado, municipio y dirección.");
@@ -421,6 +424,24 @@ function Home() {
 		}
 		if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.correo.trim())) {
 			setError("El correo no se ve válido.");
+			return;
+		}
+		setSending(true);
+		setError("");
+		const { error: insertError } = await supabase.from("solicitudes").insert({
+			nombre: form.nombre.trim(),
+			whatsapp: form.whatsapp.trim(),
+			correo: form.correo.trim(),
+			tipo: form.tipo,
+			objetivo: form.objetivo,
+			estado: form.estado,
+			municipio: form.municipio,
+			direccion: form.direccion.trim(),
+			comentarios: form.comentarios.trim() || null
+		});
+		setSending(false);
+		if (insertError) {
+			setError("No pudimos guardar la solicitud. Inténtalo de nuevo.");
 			return;
 		}
 		const w = window;
@@ -433,12 +454,6 @@ function Home() {
 			municipio: form.municipio
 		});
 		w.fbq?.("track", "Lead");
-		const prev = JSON.parse(localStorage.getItem("va-diagnosticos") || "[]");
-		localStorage.setItem("va-diagnosticos", JSON.stringify([{
-			...form,
-			at: (/* @__PURE__ */ new Date()).toISOString()
-		}, ...prev].slice(0, 20)));
-		setError("");
 		setOpen(false);
 		setToast(true);
 	}
@@ -842,7 +857,7 @@ function Home() {
 									children: "Alquilar"
 								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 									className: "mt-3 font-sub text-lg text-muted",
-									children: "Buscamos inquilino, firmamos el contrato y cobramos el canon."
+									children: "Buscamos inquilino, firmamos el contrato y cobramos el canon. Fotos profesionales, contrato, revisión del inquilino y búsqueda: 10% de una anualidad."
 								})] }),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
 									className: "font-display text-3xl",
@@ -862,7 +877,7 @@ function Home() {
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 							className: "mx-auto mt-12 max-w-2xl text-center font-sub text-muted",
-							children: "En los tres: incidencias, mantenimiento y reportes."
+							children: "La gestión va del 8% al 15% de la mensualidad, según el inmueble, la divisa de cobro y el nivel de servicio. En el Pro y el VIP, los primeros meses van incluidos. En los tres: incidencias, mantenimiento y reportes."
 						})
 					]
 				})
@@ -908,7 +923,7 @@ function Home() {
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 						className: "mx-auto mt-4 max-w-md font-sub text-lg text-muted",
-						children: "Te contactamos lo antes posible."
+						children: "Antes de 72 horas."
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 						type: "button",
@@ -1081,8 +1096,9 @@ function Home() {
 								}) : null,
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 									type: "submit",
-									className: "mt-1 rounded-full bg-brick py-3.5 font-semibold text-cream",
-									children: "Enviar solicitud"
+									disabled: sending,
+									className: "mt-1 rounded-full bg-brick py-3.5 font-semibold text-cream disabled:opacity-60",
+									children: sending ? "Enviando…" : "Enviar solicitud"
 								})
 							]
 						})]
@@ -1095,10 +1111,10 @@ function Home() {
 					className: "w-full max-w-md rounded-3xl bg-ink px-8 py-10 text-center text-cream shadow-2xl ring-1 ring-cream/15",
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 						className: "font-display text-4xl leading-tight",
-						children: "Tu diagnóstico fue solicitado."
+						children: "Solicitud enviada."
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 						className: "mt-4 font-sub text-xl text-cream/90",
-						children: "Recibirás respuesta en las próximas 24 horas."
+						children: "Recibimos tu solicitud de información del diagnóstico. Nos pondremos en contacto para organizar los detalles pertinentes, antes de 72 horas."
 					})]
 				})
 			})] }) : null
