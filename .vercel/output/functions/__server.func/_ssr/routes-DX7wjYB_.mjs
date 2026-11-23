@@ -1,6 +1,6 @@
 import { i as __toESM } from "../_runtime.mjs";
 import { K as require_react, b as require_jsx_runtime } from "../_libs/@tanstack/react-router+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-BQ8454Tl.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-DX7wjYB_.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 /** División municipal de Venezuela. Fuente: Wikipedia «Municipalities of Venezuela», 335 municipios, consultada el 18 nov 2026. */
@@ -1120,7 +1120,7 @@ var FAQ = [
 	},
 	{
 		q: "¿Qué hago si ocupan mi vivienda?",
-		a: "El contrato y la elección del inquilino son la primera barrera. Si alguien entra sin contrato, o no entrega el inmueble, lo documentamos, te avisamos y se sigue la vía legal. No prometemos un plazo de desalojo. Eso no depende solo de nosotros."
+		a: "El contrato y la elección del inquilino son la primera barrera. Si deja de pagar, lo documentamos y seguimos la vía judicial. Si alguien entra sin contrato, se denuncia. El desalojo lo ordena un tribunal."
 	},
 	{
 		q: "¿Qué pasa si dejan de pagar?",

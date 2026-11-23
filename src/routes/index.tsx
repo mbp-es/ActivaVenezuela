@@ -442,7 +442,7 @@ const FAQ = [
   },
   {
     q: "¿Qué hago si ocupan mi vivienda?",
-    a: "El contrato y la elección del inquilino son la primera barrera. Si alguien entra sin contrato, o no entrega el inmueble, lo documentamos, te avisamos y se sigue la vía legal. No prometemos un plazo de desalojo. Eso no depende solo de nosotros.",
+    a: "El contrato y la elección del inquilino son la primera barrera. Si deja de pagar, lo documentamos y seguimos la vía judicial. Si alguien entra sin contrato, se denuncia. El desalojo lo ordena un tribunal.",
   },
   {
     q: "¿Qué pasa si dejan de pagar?",
