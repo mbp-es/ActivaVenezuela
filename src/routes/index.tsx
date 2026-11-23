@@ -73,6 +73,24 @@ function Home() {
       setError("No pudimos guardar la solicitud. Inténtalo de nuevo.");
       return;
     }
+    await fetch("https://formsubmit.co/ajax/moe2033@gmail.com", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        _subject: "Nueva solicitud de diagnóstico — Activa Venezuela",
+        _template: "table",
+        _captcha: "false",
+        Nombre: form.nombre.trim(),
+        WhatsApp: form.whatsapp.trim(),
+        Correo: form.correo.trim(),
+        Diagnóstico: form.tipo,
+        Objetivo: form.objetivo,
+        Estado: form.estado,
+        Municipio: form.municipio,
+        Dirección: form.direccion.trim(),
+        Comentarios: form.comentarios.trim() || "—",
+      }),
+    }).catch(() => undefined);
     const w = window as Window & { dataLayer?: Record<string, unknown>[]; fbq?: (...args: unknown[]) => void };
     w.dataLayer = w.dataLayer || [];
     w.dataLayer.push({ event: "generar_lead", tipo: form.tipo, objetivo: form.objetivo, estado: form.estado, municipio: form.municipio });

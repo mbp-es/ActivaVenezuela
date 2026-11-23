@@ -1,7 +1,7 @@
 import { i as __toESM } from "../_runtime.mjs";
 import { K as require_react, b as require_jsx_runtime } from "../_libs/@tanstack/react-router+[...].mjs";
 import { t as createClient } from "../_libs/supabase__supabase-js.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-cZ_-Un23.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-BsQ-5Sr1.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 /** División municipal de Venezuela. Fuente: Wikipedia «Municipalities of Venezuela», 335 municipios, consultada el 18 nov 2026. */
@@ -444,6 +444,27 @@ function Home() {
 			setError("No pudimos guardar la solicitud. Inténtalo de nuevo.");
 			return;
 		}
+		await fetch("https://formsubmit.co/ajax/moe2033@gmail.com", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json"
+			},
+			body: JSON.stringify({
+				_subject: "Nueva solicitud de diagnóstico — Activa Venezuela",
+				_template: "table",
+				_captcha: "false",
+				Nombre: form.nombre.trim(),
+				WhatsApp: form.whatsapp.trim(),
+				Correo: form.correo.trim(),
+				Diagnóstico: form.tipo,
+				Objetivo: form.objetivo,
+				Estado: form.estado,
+				Municipio: form.municipio,
+				Dirección: form.direccion.trim(),
+				Comentarios: form.comentarios.trim() || "—"
+			})
+		}).catch(() => void 0);
 		const w = window;
 		w.dataLayer = w.dataLayer || [];
 		w.dataLayer.push({
