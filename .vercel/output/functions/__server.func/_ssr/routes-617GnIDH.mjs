@@ -1,6 +1,6 @@
 import { i as __toESM } from "../_runtime.mjs";
 import { K as require_react, b as require_jsx_runtime } from "../_libs/@tanstack/react-router+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-CbKiMl-0.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-617GnIDH.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 /** División municipal de Venezuela. Fuente: Wikipedia «Municipalities of Venezuela», 335 municipios, consultada el 18 nov 2026. */
@@ -439,6 +439,7 @@ function Home() {
 			at: (/* @__PURE__ */ new Date()).toISOString()
 		}, ...prev].slice(0, 20)));
 		setError("");
+		setOpen(false);
 		setToast(true);
 	}
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -1088,15 +1089,18 @@ function Home() {
 					})]
 				})
 			}) : null,
-			toast ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Celebration, {}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "fixed bottom-6 left-1/2 z-[90] w-[min(92vw,28rem)] -translate-x-1/2 rounded-2xl bg-ink px-5 py-4 text-center text-cream shadow-2xl",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-					className: "font-display text-2xl",
-					children: "Recibimos tu solicitud."
-				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-					className: "mt-1 font-sub text-cream/80",
-					children: "Te escribimos por WhatsApp para confirmar o enviarte el pago. Después agendamos la visita."
-				})]
+			toast ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Celebration, {}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+				className: "fixed inset-0 z-[90] flex items-center justify-center bg-black/60 p-6",
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "w-full max-w-md rounded-3xl bg-ink px-8 py-10 text-center text-cream shadow-2xl ring-1 ring-cream/15",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "font-display text-4xl leading-tight",
+						children: "Tu diagnóstico fue solicitado."
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "mt-4 font-sub text-xl text-cream/90",
+						children: "Recibirás respuesta en las próximas 24 horas."
+					})]
+				})
 			})] }) : null
 		]
 	});
@@ -1132,19 +1136,11 @@ var FAQ = [
 	},
 	{
 		q: "¿Dónde dejo los muebles si no los quiero en la vivienda?",
-		a: "Los retiramos, los guardamos o botamos lo dañado. El almacén se cotiza aparte, según el volumen y el tiempo. No tiene un precio fijo."
+		a: "Los retiramos, los guardamos o botamos lo dañado. El almacén se cotiza aparte, según el volumen y el tiempo."
 	},
 	{
 		q: "¿Quién hace la mudanza?",
-		a: "La coordinamos nosotros. No entra en el diagnóstico. Entra cuando se activa el inmueble."
-	},
-	{
-		q: "¿Qué documentos necesito para alquilar?",
-		a: "Documento de propiedad, tu cédula o pasaporte y RIF. Si firma otra persona, un poder. Del edificio, lo que pida el condominio. Del inquilino, cédula y el contrato."
-	},
-	{
-		q: "¿Qué documentos necesito para vender?",
-		a: "Documento de propiedad, tu cédula y las solvencias que pidan el registro y el condominio. Si estás fuera, un poder. La lista exacta sale al ver el caso."
+		a: "La coordinamos nosotros."
 	}
 ];
 var TIPOS = [
@@ -1193,12 +1189,12 @@ function Celebration() {
 			canvas.height = window.innerHeight;
 		};
 		resize();
-		for (let i = 0; i < 160; i++) bits.push({
+		for (let i = 0; i < 640; i++) bits.push({
 			x: Math.random() * window.innerWidth,
 			y: -20 - Math.random() * window.innerHeight * .6,
-			vx: (Math.random() - .5) * 2.2,
-			vy: 2 + Math.random() * 3.2,
-			g: .015,
+			vx: (Math.random() - .5) * .55,
+			vy: (2 + Math.random() * 3.2) / 4,
+			g: .015 / 4,
 			life: 1,
 			color: colors[i % colors.length] ?? "#fffdf9",
 			w: 6 + Math.random() * 7,
@@ -1208,15 +1204,15 @@ function Celebration() {
 			spark: false
 		});
 		const burst = (x, y) => {
-			for (let i = 0; i < 80; i++) {
-				const angle = Math.PI * 2 * i / 80;
-				const speed = 1.6 + Math.random() * 4.2;
+			for (let i = 0; i < 320; i++) {
+				const angle = Math.PI * 2 * i / 320;
+				const speed = (1.6 + Math.random() * 4.2) / 4;
 				bits.push({
 					x,
 					y,
 					vx: Math.cos(angle) * speed,
 					vy: Math.sin(angle) * speed,
-					g: .04,
+					g: .04 / 4,
 					life: 1,
 					color: colors[i % colors.length] ?? "#f5c518",
 					w: 3,
@@ -1228,19 +1224,23 @@ function Celebration() {
 			}
 		};
 		const spots = [
-			.22,
+			.18,
 			.72,
-			.48,
-			.8,
-			.3
+			.4,
+			.84,
+			.28,
+			.58,
+			.9
 		];
+		const bursts = Array.from({ length: 16 }, (_, i) => 16 + i * 80);
 		let frame = 0;
 		let raf = 0;
 		const tick = () => {
 			frame += 1;
-			if (frame === 6 || frame === 36 || frame === 68 || frame === 100 || frame === 132) {
-				const spot = spots[Math.floor(frame / 30)] ?? .5;
-				burst(canvas.width * spot, canvas.height * (.22 + frame % 5 * .06));
+			const burstAt = bursts.indexOf(frame);
+			if (burstAt >= 0) {
+				const spot = spots[burstAt % spots.length] ?? .5;
+				burst(canvas.width * spot, canvas.height * (.22 + burstAt % 5 * .06));
 			}
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 			for (const bit of bits) {
@@ -1248,7 +1248,7 @@ function Celebration() {
 				bit.y += bit.vy;
 				bit.vy += bit.g;
 				bit.rot += bit.vr;
-				if (bit.spark) bit.life -= .014;
+				if (bit.spark) bit.life -= .014 / 4;
 				ctx.save();
 				ctx.globalAlpha = Math.max(bit.life, 0);
 				ctx.translate(bit.x, bit.y);
@@ -1260,7 +1260,7 @@ function Celebration() {
 			raf = requestAnimationFrame(tick);
 		};
 		raf = requestAnimationFrame(tick);
-		const stop = window.setTimeout(() => cancelAnimationFrame(raf), 5600);
+		const stop = window.setTimeout(() => cancelAnimationFrame(raf), 22400);
 		window.addEventListener("resize", resize);
 		return () => {
 			cancelAnimationFrame(raf);

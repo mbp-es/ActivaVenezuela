@@ -60,6 +60,7 @@ function Home() {
     const prev = JSON.parse(localStorage.getItem("va-diagnosticos") || "[]") as FormState[];
     localStorage.setItem("va-diagnosticos", JSON.stringify([{ ...form, at: new Date().toISOString() }, ...prev].slice(0, 20)));
     setError("");
+    setOpen(false);
     setToast(true);
   }
 
@@ -413,9 +414,11 @@ function Home() {
       {toast ? (
         <>
           <Celebration />
-          <div className="fixed bottom-6 left-1/2 z-[90] w-[min(92vw,28rem)] -translate-x-1/2 rounded-2xl bg-ink px-5 py-4 text-center text-cream shadow-2xl">
-            <p className="font-display text-2xl">Recibimos tu solicitud.</p>
-            <p className="mt-1 font-sub text-cream/80">Te escribimos por WhatsApp para confirmar o enviarte el pago. Después agendamos la visita.</p>
+          <div className="fixed inset-0 z-[90] flex items-center justify-center bg-black/60 p-6">
+            <div className="w-full max-w-md rounded-3xl bg-ink px-8 py-10 text-center text-cream shadow-2xl ring-1 ring-cream/15">
+              <p className="font-display text-4xl leading-tight">Tu diagnóstico fue solicitado.</p>
+              <p className="mt-4 font-sub text-xl text-cream/90">Recibirás respuesta en las próximas 24 horas.</p>
+            </div>
           </div>
         </>
       ) : null}
@@ -454,19 +457,11 @@ const FAQ = [
   },
   {
     q: "¿Dónde dejo los muebles si no los quiero en la vivienda?",
-    a: "Los retiramos, los guardamos o botamos lo dañado. El almacén se cotiza aparte, según el volumen y el tiempo. No tiene un precio fijo.",
+    a: "Los retiramos, los guardamos o botamos lo dañado. El almacén se cotiza aparte, según el volumen y el tiempo.",
   },
   {
     q: "¿Quién hace la mudanza?",
-    a: "La coordinamos nosotros. No entra en el diagnóstico. Entra cuando se activa el inmueble.",
-  },
-  {
-    q: "¿Qué documentos necesito para alquilar?",
-    a: "Documento de propiedad, tu cédula o pasaporte y RIF. Si firma otra persona, un poder. Del edificio, lo que pida el condominio. Del inquilino, cédula y el contrato.",
-  },
-  {
-    q: "¿Qué documentos necesito para vender?",
-    a: "Documento de propiedad, tu cédula y las solvencias que pidan el registro y el condominio. Si estás fuera, un poder. La lista exacta sale al ver el caso.",
+    a: "La coordinamos nosotros.",
   },
 ];
 
@@ -497,13 +492,13 @@ function Celebration() {
       canvas.height = window.innerHeight;
     };
     resize();
-    for (let i = 0; i < 160; i++) {
+    for (let i = 0; i < 640; i++) {
       bits.push({
         x: Math.random() * window.innerWidth,
         y: -20 - Math.random() * window.innerHeight * 0.6,
-        vx: (Math.random() - 0.5) * 2.2,
-        vy: 2 + Math.random() * 3.2,
-        g: 0.015,
+        vx: (Math.random() - 0.5) * 0.55,
+        vy: (2 + Math.random() * 3.2) / 4,
+        g: 0.015 / 4,
         life: 1,
         color: colors[i % colors.length] ?? "#fffdf9",
         w: 6 + Math.random() * 7,
@@ -514,28 +509,30 @@ function Celebration() {
       });
     }
     const burst = (x: number, y: number) => {
-      for (let i = 0; i < 80; i++) {
-        const angle = (Math.PI * 2 * i) / 80;
-        const speed = 1.6 + Math.random() * 4.2;
+      for (let i = 0; i < 320; i++) {
+        const angle = (Math.PI * 2 * i) / 320;
+        const speed = (1.6 + Math.random() * 4.2) / 4;
         bits.push({
           x, y,
           vx: Math.cos(angle) * speed,
           vy: Math.sin(angle) * speed,
-          g: 0.04,
+          g: 0.04 / 4,
           life: 1,
           color: colors[i % colors.length] ?? "#f5c518",
           w: 3, h: 3, rot: 0, vr: 0, spark: true,
         });
       }
     };
-    const spots = [0.22, 0.72, 0.48, 0.8, 0.3];
+    const spots = [0.18, 0.72, 0.4, 0.84, 0.28, 0.58, 0.9];
+    const bursts = Array.from({ length: 16 }, (_, i) => 16 + i * 80);
     let frame = 0;
     let raf = 0;
     const tick = () => {
       frame += 1;
-      if (frame === 6 || frame === 36 || frame === 68 || frame === 100 || frame === 132) {
-        const spot = spots[Math.floor(frame / 30)] ?? 0.5;
-        burst(canvas.width * spot, canvas.height * (0.22 + (frame % 5) * 0.06));
+      const burstAt = bursts.indexOf(frame);
+      if (burstAt >= 0) {
+        const spot = spots[burstAt % spots.length] ?? 0.5;
+        burst(canvas.width * spot, canvas.height * (0.22 + (burstAt % 5) * 0.06));
       }
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       for (const bit of bits) {
@@ -543,7 +540,7 @@ function Celebration() {
         bit.y += bit.vy;
         bit.vy += bit.g;
         bit.rot += bit.vr;
-        if (bit.spark) bit.life -= 0.014;
+        if (bit.spark) bit.life -= 0.014 / 4;
         ctx.save();
         ctx.globalAlpha = Math.max(bit.life, 0);
         ctx.translate(bit.x, bit.y);
@@ -555,7 +552,7 @@ function Celebration() {
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
-    const stop = window.setTimeout(() => cancelAnimationFrame(raf), 5600);
+    const stop = window.setTimeout(() => cancelAnimationFrame(raf), 22400);
     window.addEventListener("resize", resize);
     return () => {
       cancelAnimationFrame(raf);
