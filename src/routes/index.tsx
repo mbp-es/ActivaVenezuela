@@ -124,12 +124,7 @@ function Home() {
           <p className="mt-3 font-sub text-lg text-muted">y te devolvemos el control sin esfuerzo.</p>
         </div>
 
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
-          <article className="rounded-card border border-line bg-paper p-7">
-            <p className="font-display text-2xl leading-snug">
-              Cada mes pagas mantenimiento, condominio, luz, agua y otros gastos de tu propiedad que no produce nada.
-            </p>
-          </article>
+        <div className="mt-10 grid gap-4 md:grid-cols-2">
           <article className="rounded-card border border-line bg-paper p-7">
             <p className="font-display text-2xl leading-snug">
               ¿Cuánto dinero has dejado de percibir durante todos estos años?

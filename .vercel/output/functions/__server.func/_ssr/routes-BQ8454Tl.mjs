@@ -1,6 +1,6 @@
 import { i as __toESM } from "../_runtime.mjs";
 import { K as require_react, b as require_jsx_runtime } from "../_libs/@tanstack/react-router+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-DxQRczLb.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-BQ8454Tl.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 /** División municipal de Venezuela. Fuente: Wikipedia «Municipalities of Venezuela», 335 municipios, consultada el 18 nov 2026. */
@@ -548,30 +548,20 @@ function Home() {
 							})]
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "mt-10 grid gap-4 md:grid-cols-3",
-							children: [
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("article", {
-									className: "rounded-card border border-line bg-paper p-7",
-									children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-										className: "font-display text-2xl leading-snug",
-										children: "Cada mes pagas mantenimiento, condominio, luz, agua y otros gastos de tu propiedad que no produce nada."
-									})
-								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("article", {
-									className: "rounded-card border border-line bg-paper p-7",
-									children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-										className: "font-display text-2xl leading-snug",
-										children: "¿Cuánto dinero has dejado de percibir durante todos estos años?"
-									})
-								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("article", {
-									className: "rounded-card border border-line bg-paper p-7",
-									children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-										className: "font-display text-2xl leading-snug",
-										children: "Deja de cubrir gastos, y empieza a descubrir ingresos."
-									})
+							className: "mt-10 grid gap-4 md:grid-cols-2",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("article", {
+								className: "rounded-card border border-line bg-paper p-7",
+								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "font-display text-2xl leading-snug",
+									children: "¿Cuánto dinero has dejado de percibir durante todos estos años?"
 								})
-							]
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("article", {
+								className: "rounded-card border border-line bg-paper p-7",
+								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "font-display text-2xl leading-snug",
+									children: "Deja de cubrir gastos, y empieza a descubrir ingresos."
+								})
+							})]
 						})
 					]
 				})
