@@ -446,7 +446,7 @@ const FAQ = [
   },
   {
     q: "¿Qué pasa si dejan de pagar?",
-    a: "Cobramos nosotros. Al primer atraso te avisamos y reclamamos según el contrato. No te adelantamos el alquiler si el inquilino no paga.",
+    a: "Cobramos nosotros. Al primer impago te avisamos, reclamamos según el contrato y activamos la fianza. Cubre hasta 12 meses mientras se sigue la vía legal.",
   },
   {
     q: "¿Quién responde por los daños?",
