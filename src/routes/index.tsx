@@ -450,7 +450,7 @@ const FAQ = [
   },
   {
     q: "¿Quién responde por los daños?",
-    a: "Hay inventario al entrar y al salir, con fotos. El depósito cubre lo que no es desgaste normal. Lo que exceda se reclama al inquilino. No somos un seguro.",
+    a: "Hay inventario al entrar y al salir, con fotos. El depósito cubre lo que no es desgaste normal. Lo que exceda se reclama al inquilino.",
   },
   {
     q: "¿Dónde dejo los muebles si no los quiero en la vivienda?",

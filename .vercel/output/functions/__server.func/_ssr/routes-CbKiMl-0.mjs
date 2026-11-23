@@ -1,6 +1,6 @@
 import { i as __toESM } from "../_runtime.mjs";
 import { K as require_react, b as require_jsx_runtime } from "../_libs/@tanstack/react-router+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-Ca8KV0SP.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-CbKiMl-0.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 /** División municipal de Venezuela. Fuente: Wikipedia «Municipalities of Venezuela», 335 municipios, consultada el 18 nov 2026. */
@@ -1128,7 +1128,7 @@ var FAQ = [
 	},
 	{
 		q: "¿Quién responde por los daños?",
-		a: "Hay inventario al entrar y al salir, con fotos. El depósito cubre lo que no es desgaste normal. Lo que exceda se reclama al inquilino. No somos un seguro."
+		a: "Hay inventario al entrar y al salir, con fotos. El depósito cubre lo que no es desgaste normal. Lo que exceda se reclama al inquilino."
 	},
 	{
 		q: "¿Dónde dejo los muebles si no los quiero en la vivienda?",
