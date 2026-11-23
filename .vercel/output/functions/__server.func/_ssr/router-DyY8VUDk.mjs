@@ -4,7 +4,7 @@ import { t as TriangleAlert } from "../_libs/lucide-react.mjs";
 import { t as Analytics } from "../_libs/vercel__analytics.mjs";
 import { t as SpeedInsights } from "../_libs/vercel__speed-insights.mjs";
 import { a as union, i as string, n as number, r as object, t as literal } from "../_libs/zod.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-Cgbs-nkz.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router-DyY8VUDk.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var FALLBACK_MESSAGE = "An unexpected error occurred. Try reloading the page.";
@@ -332,7 +332,7 @@ function PreviewHostBridge() {
 	}, [router]);
 	return null;
 }
-var styles_default = "/assets/styles-B_WrhrlV.css";
+var styles_default = "/assets/styles-fGg4MqHH.css";
 var APP_NAME = "Activa Venezuela";
 var META_PIXEL_SCRIPT = `
   !function(f,b,e,v,n,t,s) {
@@ -375,7 +375,7 @@ var Route$1 = createRootRoute({
 			{ title: APP_NAME },
 			{
 				name: "description",
-				content: "Gestión integral de inmuebles en Venezuela para quienes viven fuera o no tienen tiempo."
+				content: "Pon tu inmueble en Venezuela a generar. Diagnóstico con ingeniero civil, obras, inquilino y cobro en divisa. Te respondemos en menos de 24 h."
 			},
 			{
 				name: "theme-color",
@@ -411,7 +411,7 @@ var Route$1 = createRootRoute({
 			},
 			{
 				rel: "stylesheet",
-				href: "https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,650&family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap"
+				href: "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap"
 			}
 		]
 	}),
@@ -450,7 +450,7 @@ var Route$1 = createRootRoute({
 		] })]
 	})
 });
-var $$splitComponentImporter = () => import("./routes-BsQ-5Sr1.mjs");
+var $$splitComponentImporter = () => import("./routes-Bv8YwiZF.mjs");
 var rootRouteChildren = { IndexRoute: createFileRoute("/")({ component: lazyRouteComponent($$splitComponentImporter, "component") }).update({
 	id: "/",
 	path: "/",
