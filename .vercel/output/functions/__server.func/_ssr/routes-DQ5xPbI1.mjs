@@ -1,7 +1,7 @@
 import { i as __toESM } from "../_runtime.mjs";
 import { K as require_react, b as require_jsx_runtime } from "../_libs/@tanstack/react-router+[...].mjs";
 import { t as createClient } from "../_libs/supabase__supabase-js.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-CfDa-u2l.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-DQ5xPbI1.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var supabase = createClient("https://hgtbfknzcvwkbrzjfohl.supabase.co", "sb_publishable_9FdQR4cTMab6-tycQ-nRIw_bIKUmRJx");
@@ -230,8 +230,17 @@ function Home() {
 			setErrorMsg("No pudimos enviar tus datos. Inténtalo de nuevo o escríbenos por WhatsApp.");
 			return;
 		}
-		await fetch("https://formsubmit.co/ajax/moe2033@gmail.com", {
+		track("generar_lead", {
+			tipo: "informacion_correo",
+			ref
+		}, "Lead");
+		setEstado("ok");
+		setNombre("");
+		setCorreo("");
+		setAcepta(false);
+		fetch("https://formsubmit.co/ajax/moe2033@gmail.com", {
 			method: "POST",
+			keepalive: true,
 			headers: {
 				"Content-Type": "application/json",
 				Accept: "application/json"
@@ -245,14 +254,6 @@ function Home() {
 				Origen: ref || "directo"
 			})
 		}).catch(() => void 0);
-		track("generar_lead", {
-			tipo: "informacion_correo",
-			ref
-		}, "Lead");
-		setEstado("ok");
-		setNombre("");
-		setCorreo("");
-		setAcepta(false);
 	}
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "av-root",

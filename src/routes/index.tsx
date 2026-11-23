@@ -168,8 +168,14 @@ function Home() {
       setErrorMsg("No pudimos enviar tus datos. Inténtalo de nuevo o escríbenos por WhatsApp.");
       return;
     }
-    await fetch("https://formsubmit.co/ajax/moe2033@gmail.com", {
+    track("generar_lead", { tipo: "informacion_correo", ref }, "Lead");
+    setEstado("ok");
+    setNombre("");
+    setCorreo("");
+    setAcepta(false);
+    void fetch("https://formsubmit.co/ajax/moe2033@gmail.com", {
       method: "POST",
+      keepalive: true,
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify({
         _subject: "Nuevo lead (información por correo): Activa Venezuela",
@@ -180,11 +186,6 @@ function Home() {
         Origen: ref || "directo",
       }),
     }).catch(() => undefined);
-    track("generar_lead", { tipo: "informacion_correo", ref }, "Lead");
-    setEstado("ok");
-    setNombre("");
-    setCorreo("");
-    setAcepta(false);
   }
 
   return (
