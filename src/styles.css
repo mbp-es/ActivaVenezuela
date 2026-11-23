@@ -28,8 +28,28 @@
     scroll-behavior: smooth;
   }
 
+  summary {
+    list-style: none;
+    cursor: pointer;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details[open] .faq-plus {
+    transform: rotate(45deg);
+  }
+
+  input[type="range"] {
+    width: 100%;
+    accent-color: #f0c998;
+    height: 28px;
+    margin: 0;
+  }
+
   body {
-    background: var(--color-paper);
+    background: #f1ece2;
     color: var(--color-ink);
     font-family: var(--font-sans);
   }
